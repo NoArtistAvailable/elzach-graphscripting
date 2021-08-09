@@ -1,0 +1,22 @@
+{
+  "name": "com.elzach.graphscripting",
+  "description": "Base for customizable visual scripting",
+  "author": { "name":"elZach", "email":"dontmessageme","url":"-" },
+  "version": "0.0.1",
+  "unity": "2020.3",
+  "unityRelease":"0a1",
+  "displayName": "elzach GraphScripting",
+  "keywords": [ "unity" ],
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/felix.reinemann/elzach-graphscripting"
+  },
+  "dependencies": {
+	
+  },
+  "samples": [
+	{
+	    
+	}
+  ]
+}

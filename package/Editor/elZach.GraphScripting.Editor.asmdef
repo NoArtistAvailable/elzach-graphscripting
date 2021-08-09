@@ -1,0 +1,18 @@
+{
+    "name": "elZach.SimpleAI.BehaviourTree.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:121070efeb77c9c4f85a1725812718df"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

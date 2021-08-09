@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-2352044619461984896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d18b4b58c5c14d04a96d64a67d5d8171, type: 3}
+  m_Name: Root
+  m_EditorClassIdentifier: 
+  guid: 736627102a0465c449429fed070432b1
+  position: {x: 0, y: 0}
+  state: 0
+  Child: {fileID: 3019713063745136556}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 376d759668af6234d8099cf2f1040dc2, type: 3}
+  m_Name: Sample
+  m_EditorClassIdentifier: 
+  state: 0
+  rootNode: {fileID: -2352044619461984896}
+  nodes:
+  - {fileID: 0}
+  - {fileID: -2352044619461984896}
+  - {fileID: 3019713063745136556}
+--- !u!114 &3019713063745136556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db8167bbda4ae604b90afee247018d6b, type: 3}
+  m_Name: FireEvent
+  m_EditorClassIdentifier: 
+  guid: e7c77d553297cce4f8523a82c6e9dbf8
+  position: {x: 242, y: 91}
+  state: 0
+  OnTriggered:
+    m_PersistentCalls:
+      m_Calls: []
