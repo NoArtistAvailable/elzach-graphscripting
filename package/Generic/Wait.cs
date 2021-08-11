@@ -8,6 +8,14 @@ namespace elZach.SimpleAI.BehaviourTree
     {
         public float waitTime;
         private float waitUntil = -1;
+        public bool expose;
+
+        public override List<TreeContainer.Parameter> GetPublicParameters()
+        {
+            var parameters = new List<TreeContainer.Parameter>();
+            if (expose) parameters.Add(new TreeContainer.Parameter(){name="WaitTime",type = typeof(float)});
+            return parameters;
+        }
 
         public override Color GetColor() => new Color(0.15f, 0.15f, 0.25f);
 

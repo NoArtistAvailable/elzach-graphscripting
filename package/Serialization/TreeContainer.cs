@@ -9,9 +9,28 @@ namespace elZach.SimpleAI.BehaviourTree
     [CreateAssetMenu(menuName = "SimpleAI/BehaviourTree")]
     public class TreeContainer : ScriptableObject
     {
+        [Serializable]
+        public struct Parameter
+        {
+            public string name;
+            public Type type;
+            //public object data;
+        }
+        
         public Node.State state = Node.State.Running;
         public Node rootNode;
         public List<Node> nodes = new List<Node>();
+        public List<Parameter> Parameters => GetExposedParameters();
+
+        private List<Parameter> GetExposedParameters()
+        {
+            var parameters = new List<Parameter>();
+            foreach (var node in nodes)
+            {
+                parameters.AddRange(node.GetPublicParameters());
+            }
+            return parameters;
+        }
 
         public void Init(TreeDirector director)
         {

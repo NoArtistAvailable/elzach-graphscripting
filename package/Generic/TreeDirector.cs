@@ -9,7 +9,7 @@ namespace elZach.SimpleAI.BehaviourTree
     public class TreeDirector : MonoBehaviour
     {
         public TreeContainer data;
-        public Dictionary<string, object> BlackBoard = new Dictionary<string, object>();
+        public Dictionary<string, object> Bindings = new Dictionary<string, object>();
 
         private void Start()
         {

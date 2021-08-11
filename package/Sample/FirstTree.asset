@@ -31,7 +31,7 @@ MonoBehaviour:
   m_Name: FireEvent
   m_EditorClassIdentifier: 
   guid: bae6923c5b179cd4da55192000bdac3f
-  position: {x: 527.14514, y: -0.49997616}
+  position: {x: 529, y: 1}
   state: 0
   OnTriggered:
     m_PersistentCalls:
@@ -120,6 +120,7 @@ MonoBehaviour:
   position: {x: 333, y: -38.500008}
   state: 0
   waitTime: 3
+  expose: 0
 --- !u!114 &1787332610410860740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,6 +191,7 @@ MonoBehaviour:
   position: {x: 188.00005, y: -115.500015}
   state: 0
   waitTime: 2
+  expose: 0
 --- !u!114 &3501956852932625425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,6 +260,7 @@ MonoBehaviour:
   position: {x: 406.15, y: 116.000015}
   state: 0
   waitTime: 2
+  expose: 0
 --- !u!114 &6914532404917142356
 MonoBehaviour:
   m_ObjectHideFlags: 0

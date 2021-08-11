@@ -15,7 +15,11 @@ namespace elZach.SimpleAI.BehaviourTree
         public virtual Color GetColor() => new Color(0.25f,0.25f,0.25f);
         private bool started = false;
         public bool Started => started;
-        
+
+        public virtual List<TreeContainer.Parameter> GetPublicParameters()
+        {
+            return new List<TreeContainer.Parameter>();
+        }
         
         public virtual void Init(TreeDirector director)
         {
