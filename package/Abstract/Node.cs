@@ -9,7 +9,7 @@ namespace elZach.GraphScripting
     {
         public enum State{Running, Failure, Success}
 
-        public string guid;
+        [HideInInspector] public string guid;
         [HideInInspector] public Vector2 position;
         [HideInInspector] public State state;
         [HideInInspector] public TreeContainer container;

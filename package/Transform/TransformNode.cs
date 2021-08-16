@@ -13,6 +13,8 @@ namespace elZach.GraphScripting
         public float time = 0.5f;
         private Coroutine movementRoutine;
 
+        public override Color GetColor() => new Color(0.3f,0.5f,0.4f);
+
         protected override void OnStart()
         {
             if(Target)

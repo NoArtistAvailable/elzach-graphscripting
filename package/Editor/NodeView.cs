@@ -115,46 +115,47 @@ namespace elZach.GraphScripting
             // }
             if (node.Started && node.state == Node.State.Running)
             {
-                this.titleContainer.style.backgroundColor = new Color(0.05f,0.6f,0.35f);
-                if (this.input != null)
+                //this.titleContainer.style.backgroundColor = new Color(0.05f,0.6f,0.35f);
+                if (this.input?.contentContainer != null)
                 {
-                    this.input.portColor = new Color(0.05f,0.6f,0.35f);
-                    foreach (var connection in this.input.connections)
-                    {
-                        connection.edgeControl.MarkDirtyRepaint();
-                    }
+                    this.input.contentContainer.style.backgroundColor = new Color(0.05f,0.6f,0.35f);
+                    // foreach (var connection in this.input.connections)
+                    // {
+                    //     connection.edgeControl.MarkDirtyRepaint();
+                    // }
                 }
 
-                if (this.output != null)
+                if (this.output?.contentContainer != null)
                 {
-                    this.output.portColor = new Color(0.6f,0.05f,0.35f);
-                    foreach (var connection in this.output.connections)
-                    {
-                        connection.edgeControl.MarkDirtyRepaint();
-                    }
+                    this.output.contentContainer.style.backgroundColor = new Color(0.05f,0.6f,0.35f);
+                    // foreach (var connection in this.output.connections)
+                    // {
+                    //     connection.edgeControl.MarkDirtyRepaint();
+                    // }
                 }
                 
             }
             else
             {
-                this.titleContainer.style.backgroundColor = node.GetColor();
-                if (this.input != null)
+                //this.titleContainer.style.backgroundColor = node.GetColor();
+                if (this.input?.contentContainer != null)
                 {
-                    this.input.portColor = Color.gray;
-                    foreach (var connection in this.input.connections)
-                    {
-                        connection.edgeControl.MarkDirtyRepaint();
-                    }
-                    //this.input.connections?.MarkDirtyRepaint();
+                    this.input.contentContainer.style.backgroundColor = Color.HSVToRGB(0f, 0f, 0.225f);
+                    // this.input.portColor = Color.gray;
+                    // foreach (var connection in this.input.connections)
+                    // {
+                    //     connection.edgeControl.MarkDirtyRepaint();
+                    // }
                 }
 
                 if (this.output != null)
                 {
-                    this.output.portColor = Color.gray;
-                    foreach (var connection in this.output.connections)
-                    {
-                        connection.edgeControl.MarkDirtyRepaint();
-                    }
+                    this.output.contentContainer.style.backgroundColor = Color.HSVToRGB(0f, 0f, 0.175f);
+                    // this.output.portColor = Color.gray;
+                    // foreach (var connection in this.output.connections)
+                    // {
+                    //     connection.edgeControl.MarkDirtyRepaint();
+                    // }
                 }
                 this.MarkDirtyRepaint();
             }
