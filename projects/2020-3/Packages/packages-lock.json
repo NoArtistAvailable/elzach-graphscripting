@@ -12,6 +12,13 @@
       "source": "local",
       "dependencies": {}
     },
+    "com.elzach.renderpipelines": {
+      "version": "https://github.com/NoArtistAvailable/elzach-renderpipelines.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "f7ba7f3180b89c0b17ed8fef156312dac1d63632"
+    },
     "com.unity.ext.nunit": {
       "version": "1.0.6",
       "depth": 1,
