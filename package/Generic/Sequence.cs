@@ -5,7 +5,6 @@ namespace elZach.GraphScripting
 {
     public class Sequence : Composite
     {
-        public bool repeat = false;
         private int current = 0;
         private State terminatedState;
         private bool terminated = false;
@@ -27,11 +26,11 @@ namespace elZach.GraphScripting
                 case State.Success:
                     current++;
                     if (current < Children.Count) return State.Running;
-                    if (!repeat) Terminate(State.Success);
+                    //if (!repeat) Terminate(State.Success);
                     current = 0;
                     return State.Success;
                 case State.Failure:
-                    if (!repeat) Terminate(State.Failure);
+                    //if (!repeat) Terminate(State.Failure);
                     current = 0;
                     return State.Failure;
             }

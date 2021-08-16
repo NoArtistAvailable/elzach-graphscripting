@@ -18,6 +18,7 @@ namespace elZach.GraphScripting
         }
         
         public Node.State state = Node.State.Running;
+        [HideInInspector] public TreeDirector director;
         public Node rootNode;
         public List<Node> nodes = new List<Node>();
         public List<Parameter> Parameters => GetExposedParameters();
@@ -34,6 +35,7 @@ namespace elZach.GraphScripting
 
         public void Init(TreeDirector director)
         {
+            this.director = director;
             rootNode.Init(director);
         }
         
@@ -49,6 +51,7 @@ namespace elZach.GraphScripting
             Node node = ScriptableObject.CreateInstance(type) as Node;
             node.name = type.Name;
             node.guid = GUID.Generate().ToString();
+            node.container = this;
             nodes.Add(node);
             if(!Application.isPlaying)
                 AssetDatabase.AddObjectToAsset(node, this);
@@ -98,7 +101,11 @@ namespace elZach.GraphScripting
             var tree = Instantiate(this);
             tree.rootNode = tree.rootNode.Clone();
             tree.nodes = new List<Node>();
-            ForeachNode(tree.rootNode, (node) => tree.nodes.Add(node));
+            ForeachNode(tree.rootNode, (node) =>
+            {
+                tree.nodes.Add(node);
+                node.container = tree;
+            });
             
             return tree;
         }

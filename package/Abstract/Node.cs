@@ -12,9 +12,12 @@ namespace elZach.GraphScripting
         public string guid;
         [HideInInspector] public Vector2 position;
         [HideInInspector] public State state;
+        [HideInInspector] public TreeContainer container;
+        public TreeDirector director => container.director;
         public virtual Color GetColor() => new Color(0.25f,0.25f,0.25f);
         private bool started = false;
         public bool Started => started;
+        
 
         public virtual List<TreeContainer.Parameter> GetPublicParameters()
         {
@@ -23,7 +26,7 @@ namespace elZach.GraphScripting
         
         public virtual void Init(TreeDirector director)
         {
-            
+            //this.director = director;
         }
 
         protected virtual void OnStart(){}
