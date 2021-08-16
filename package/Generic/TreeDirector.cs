@@ -2,15 +2,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.Serialization;
 using UnityEngine;
 
 namespace elZach.SimpleAI.BehaviourTree
 {
     public class TreeDirector : MonoBehaviour
     {
+        [Serializable]
+        public class Binding
+        {
+            public string name;
+            [SerializeReference]
+            public ISerializable data;
+        }
+        
         public TreeContainer data;
-        public Dictionary<string, object> BlackBoard = new Dictionary<string, object>();
+        public Dictionary<string, ISerializable> Bindings = new Dictionary<string, ISerializable>();
 
+        public Binding test;
+        
         private void Start()
         {
             if (!data) return;
