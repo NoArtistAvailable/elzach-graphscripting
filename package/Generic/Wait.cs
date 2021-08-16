@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace elZach.SimpleAI.BehaviourTree
+namespace elZach.GraphScripting
 {
     public class Wait : Node
     {

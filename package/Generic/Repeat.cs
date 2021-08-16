@@ -1,4 +1,4 @@
-﻿namespace elZach.SimpleAI.BehaviourTree
+﻿namespace elZach.GraphScripting
 {
     public class Repeat : Decorator
     {

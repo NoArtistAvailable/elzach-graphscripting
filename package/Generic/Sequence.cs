@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace elZach.SimpleAI.BehaviourTree
+namespace elZach.GraphScripting
 {
     public class Sequence : Composite
     {

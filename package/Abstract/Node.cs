@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace elZach.SimpleAI.BehaviourTree
+namespace elZach.GraphScripting
 {
     public abstract class Node : ScriptableObject
     {

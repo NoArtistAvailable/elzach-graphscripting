@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using elZach.SimpleAI.BehaviourTree;
+using elZach.GraphScripting;
 using UnityEngine;
 
 public class FireChild : FireEvent

@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using elZach.SimpleAI.BehaviourTree;
+using elZach.GraphScripting;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
-using Node = elZach.SimpleAI.BehaviourTree.Node;
+using Node = elZach.GraphScripting.Node;
 
 // namespace elZach.SimpleAI.BehaviourTree
 // {

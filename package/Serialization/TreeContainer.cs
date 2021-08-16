@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 using UnityEditor;
 using UnityEngine;
 
-namespace elZach.SimpleAI.BehaviourTree
+namespace elZach.GraphScripting
 {
     [CreateAssetMenu(menuName = "SimpleAI/BehaviourTree")]
     public class TreeContainer : ScriptableObject

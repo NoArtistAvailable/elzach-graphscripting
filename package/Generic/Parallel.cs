@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace elZach.SimpleAI.BehaviourTree
+namespace elZach.GraphScripting
 {
     public class Parallel : Composite
     {

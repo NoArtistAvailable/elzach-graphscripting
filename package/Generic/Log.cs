@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace elZach.SimpleAI.BehaviourTree
+namespace elZach.GraphScripting
 {
     public class Log : Decorator
     {

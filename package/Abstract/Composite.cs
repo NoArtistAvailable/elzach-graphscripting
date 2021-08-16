@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace elZach.SimpleAI.BehaviourTree
+namespace elZach.GraphScripting
 {
     public abstract class Composite : Node
     {
