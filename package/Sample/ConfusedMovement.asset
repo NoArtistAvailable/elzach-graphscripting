@@ -15,7 +15,7 @@ MonoBehaviour:
   guid: 3698ef6479dfb4047b545146a67b74fa
   position: {x: 333, y: 98}
   state: 0
-  director: {fileID: 0}
+  container: {fileID: 0}
   targetTransformBindingName: AnotherName
   toMove: {x: -5, y: 0, z: 0}
   movementCurve:
@@ -58,7 +58,7 @@ MonoBehaviour:
   guid: b9d35cfd9d9e6b544adbc762f9fcc394
   position: {x: 8.965118, y: -0.000034332275}
   state: 0
-  director: {fileID: 0}
+  container: {fileID: 0}
   Child: {fileID: 7148292131132746138}
   exitOnFail: 0
 --- !u!114 &-2473102899121218712
@@ -76,7 +76,7 @@ MonoBehaviour:
   guid: 7b9d18ef53a958449abbc9c84de846d6
   position: {x: 333, y: 0}
   state: 0
-  director: {fileID: 0}
+  container: {fileID: 0}
   targetTransformBindingName: AnotherName
   toMove: {x: 5, y: 0, z: 0}
   movementCurve:
@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Name: ConfusedMovement
   m_EditorClassIdentifier: 
   state: 0
+  director: {fileID: 0}
   rootNode: {fileID: 7143891114599926735}
   nodes:
   - {fileID: 7143891114599926735}
@@ -125,6 +126,25 @@ MonoBehaviour:
   - {fileID: -8664605928005225299}
   - {fileID: 4876448239021107021}
   - {fileID: -6399998786330073624}
+  - {fileID: 4790701230985913959}
+--- !u!114 &4790701230985913959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8db587377a9d048810919c473737ff, type: 3}
+  m_Name: RotateTransform
+  m_EditorClassIdentifier: 
+  guid: ebb2b68180151fe49860cdefb79f731f
+  position: {x: 334.49997, y: 284.10855}
+  state: 0
+  container: {fileID: 11400000}
+  transformReference: AnotherName
+  toRotate: {x: 45, y: 0, z: 0}
 --- !u!114 &4876448239021107021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,7 +160,7 @@ MonoBehaviour:
   guid: 4a17ce92e3da7e140a66bf2ee29fc45c
   position: {x: 333, y: 187}
   state: 0
-  director: {fileID: 0}
+  container: {fileID: 0}
   waitTime: 1.2
   expose: 0
 --- !u!114 &7143891114599926735
@@ -158,7 +178,7 @@ MonoBehaviour:
   guid: ad62b2be021ea944c878233837d4aa32
   position: {x: -115.18013, y: -0.00003329277}
   state: 0
-  director: {fileID: 0}
+  container: {fileID: 0}
   Child: {fileID: -6399998786330073624}
 --- !u!114 &7148292131132746138
 MonoBehaviour:
@@ -175,8 +195,9 @@ MonoBehaviour:
   guid: 06c9b2a7827613e41b55155139261dde
   position: {x: 133, y: 0}
   state: 0
-  director: {fileID: 0}
+  container: {fileID: 0}
   Children:
   - {fileID: -2473102899121218712}
   - {fileID: -8664605928005225299}
   - {fileID: 4876448239021107021}
+  - {fileID: 4790701230985913959}
