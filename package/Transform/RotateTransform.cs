@@ -15,8 +15,6 @@ public class RotateTransform : Node
 
     protected override State OnUpdate()
     {
-        Transform nono = null;
-        nono.Rotate(toRotate);
         transform.Rotate(toRotate);
         return State.Success;
     }
