@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using UnityEditor;
 using UnityEngine;
 
 namespace elZach.GraphScripting
@@ -127,10 +126,12 @@ namespace elZach.GraphScripting
             return clone;
         }
 
-        public virtual void OnDrawSelected(SceneView sceneView)
+        #if UNITY_EDITOR
+        public virtual void OnDrawSelected(UnityEditor.SceneView sceneView)
         {
             //Debug.Log(name);
         }
+        #endif
 
         public void OnBeforeSerialize()
         {

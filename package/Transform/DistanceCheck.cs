@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 
 namespace elZach.GraphScripting
@@ -15,14 +14,16 @@ namespace elZach.GraphScripting
             return State.Success;
         }
 
-        public override void OnDrawSelected(SceneView sceneView)
+#if UNITY_EDITOR
+        public override void OnDrawSelected(UnityEditor.SceneView sceneView)
         {
             if (!targetA || !targetB) return;
             //Gizmos.DrawLine(targetA.position, targetB.position);
-            Handles.DrawLine(targetA.position,targetB.position);
+            UnityEditor.Handles.DrawLine(targetA.position,targetB.position);
             var dir = targetA.position - targetB.position;
             // Debug.DrawRay(targetA.position,-dir.normalized*distance*0.5f);
             // Debug.DrawRay(targetB.position,dir.normalized*distance*0.5f);
-        }
+        } 
+#endif
     }
 }
