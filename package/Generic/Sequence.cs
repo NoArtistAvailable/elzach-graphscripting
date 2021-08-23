@@ -9,9 +9,9 @@ namespace elZach.GraphScripting
         private State terminatedState;
         private bool terminated = false;
 
-        public override void Init(TreeDirector director)
+        public override void Init()
         {
-            base.Init(director);
+            base.Init();
             current = 0;
             terminated = false;
         }

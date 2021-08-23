@@ -11,10 +11,11 @@ public class BehaviourTreeEditorWindow : EditorWindow
     private InspectorView inspectorView;
     
     [MenuItem("Window/Graph/Scripting Graph")]
-    public static void ShowExample()
+    public static void Init()
     {
-        BehaviourTreeEditorWindow wnd = GetWindow<BehaviourTreeEditorWindow>();
+        BehaviourTreeEditorWindow wnd = CreateWindow<BehaviourTreeEditorWindow>();  //GetWindow<BehaviourTreeEditorWindow>();
         wnd.titleContent = new GUIContent("BehaviourTreeEditorWindow");
+        wnd.minSize = new Vector2(250, 250);
     }
 
     void OnEnable()

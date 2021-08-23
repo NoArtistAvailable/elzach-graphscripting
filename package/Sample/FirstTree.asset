@@ -15,6 +15,8 @@ MonoBehaviour:
   guid: e3cf60c2216bc32408435c0b8b7f77d6
   position: {x: 406.15, y: 193.00002}
   state: 0
+  container: {fileID: 0}
+  parameters: []
   Child: {fileID: 0}
   message: Double Done
   condition: 0
@@ -33,6 +35,8 @@ MonoBehaviour:
   guid: bae6923c5b179cd4da55192000bdac3f
   position: {x: 529, y: 1}
   state: 0
+  container: {fileID: 0}
+  parameters: []
   OnTriggered:
     m_PersistentCalls:
       m_Calls: []
@@ -51,6 +55,8 @@ MonoBehaviour:
   guid: d818acb929d94f1459d263967434eb78
   position: {x: -42.000057, y: 78.00001}
   state: 0
+  container: {fileID: 0}
+  parameters: []
   Children:
   - {fileID: 3501956852932625425}
   - {fileID: -942798242026085479}
@@ -69,6 +75,8 @@ MonoBehaviour:
   guid: 20b9814ad776faa4aaf22a3931bcb5e9
   position: {x: 118.45, y: 116.000015}
   state: 0
+  container: {fileID: 0}
+  parameters: []
   Child: {fileID: 6914532404917142356}
   message: Working in Parallel A
   condition: 0
@@ -85,6 +93,7 @@ MonoBehaviour:
   m_Name: FirstTree
   m_EditorClassIdentifier: 
   state: 0
+  director: {fileID: 0}
   rootNode: {fileID: 4164697527093240692}
   nodes:
   - {fileID: 4164697527093240692}
@@ -119,6 +128,8 @@ MonoBehaviour:
   guid: 801d1c175990d794a969d15e9db67d77
   position: {x: 333, y: -38.500008}
   state: 0
+  container: {fileID: 0}
+  parameters: []
   waitTime: 3
   expose: 0
 --- !u!114 &1787332610410860740
@@ -136,6 +147,8 @@ MonoBehaviour:
   guid: a90dfe80467e42a40b4dfca5426e9281
   position: {x: 260, y: -76.50001}
   state: 0
+  container: {fileID: 0}
+  parameters: []
   Child: {fileID: 0}
   message: Ok, then
   condition: 0
@@ -154,6 +167,8 @@ MonoBehaviour:
   guid: 6cd5e07fb11c8cd4184d9ee1335bbc02
   position: {x: -138.99998, y: 77.99998}
   state: 0
+  container: {fileID: 0}
+  parameters: []
   Child: {fileID: -8631550497974791903}
   message: Select B
   condition: 2
@@ -172,6 +187,8 @@ MonoBehaviour:
   guid: 09a7110630f6d5143b0bdbf3cc13c5eb
   position: {x: 115, y: -154}
   state: 0
+  container: {fileID: 0}
+  parameters: []
   Child: {fileID: 0}
   message: Let's goo!
   condition: 0
@@ -190,6 +207,8 @@ MonoBehaviour:
   guid: fa02d91bfaf9cc44294d12a409b320c2
   position: {x: 188.00005, y: -115.500015}
   state: 0
+  container: {fileID: 0}
+  parameters: []
   waitTime: 2
   expose: 0
 --- !u!114 &3501956852932625425
@@ -207,6 +226,8 @@ MonoBehaviour:
   guid: 6ef660bcac8572247930efcb5acd5da7
   position: {x: 118.00003, y: 192.99998}
   state: 0
+  container: {fileID: 0}
+  parameters: []
   Child: {fileID: 0}
   message: Working in Parallel B
   condition: 0
@@ -225,6 +246,8 @@ MonoBehaviour:
   guid: bd65090702ec6c34d83d33e5bc4a7c9a
   position: {x: 405.00006, y: 0.50000244}
   state: 0
+  container: {fileID: 0}
+  parameters: []
   Child: {fileID: -8794488230265882676}
   message: we're done.
   condition: 0
@@ -243,6 +266,8 @@ MonoBehaviour:
   guid: 2de46b0976acac14681db19384eab8f4
   position: {x: -377.95, y: 39.499973}
   state: 0
+  container: {fileID: 0}
+  parameters: []
   Child: {fileID: 8168126649845244533}
 --- !u!114 &5320604139624724921
 MonoBehaviour:
@@ -259,6 +284,8 @@ MonoBehaviour:
   guid: a3040d9dc1a3b6b4d8a64d807d797641
   position: {x: 406.15, y: 116.000015}
   state: 0
+  container: {fileID: 0}
+  parameters: []
   waitTime: 2
   expose: 0
 --- !u!114 &6914532404917142356
@@ -274,12 +301,13 @@ MonoBehaviour:
   m_Name: Sequence
   m_EditorClassIdentifier: 
   guid: f825f4d58fab00f44acbbf54d49f6c92
-  position: {x: 227.59998, y: 116.000015}
+  position: {x: 229, y: 116.5}
   state: 0
+  container: {fileID: 0}
+  parameters: []
   Children:
   - {fileID: 5320604139624724921}
   - {fileID: -9203898907865181029}
-  repeat: 1
 --- !u!114 &7267191518874668565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,13 +323,14 @@ MonoBehaviour:
   guid: 8f2a0e2c40f382044961fa00c9dc55c8
   position: {x: -42.00008, y: 0.5}
   state: 0
+  container: {fileID: 0}
+  parameters: []
   Children:
   - {fileID: 2409416643242773214}
   - {fileID: 2464517521541764958}
   - {fileID: 1787332610410860740}
   - {fileID: 1782999779805147618}
   - {fileID: 4158601402768641680}
-  repeat: 0
 --- !u!114 &7981987642075132116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,6 +346,8 @@ MonoBehaviour:
   guid: 5d7b711be96c40b49aade551864aa185
   position: {x: -139.15001, y: 0.49999964}
   state: 0
+  container: {fileID: 0}
+  parameters: []
   Child: {fileID: 7267191518874668565}
   message: Select A
   condition: 2
@@ -335,6 +366,8 @@ MonoBehaviour:
   guid: 409c7b8d9aeae03419095f2982b14534
   position: {x: -272.89996, y: 38.999977}
   state: 0
+  container: {fileID: 0}
+  parameters: []
   Children:
   - {fileID: 7981987642075132116}
   - {fileID: 1873489379776338095}

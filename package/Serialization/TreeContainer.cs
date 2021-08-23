@@ -10,10 +10,25 @@ namespace elZach.GraphScripting
     public class TreeContainer : ScriptableObject
     {
         [Serializable]
-        public struct Parameter
+        public class Parameter
         {
             public string name;
-            public Type type;
+            private bool _triedGetting;
+            private Type _type;
+            public Type type
+            {
+                get
+                {
+                    //Debug.Log($"Getting type from {typeName}");
+                    if (/*!_triedGetting &&*/ _type == null) _type = Type.GetType(typeName);
+                    //_triedGetting = true;
+                    return _type;
+                }
+                set => typeName = value.AssemblyQualifiedName;
+            }
+
+            [SerializeField, HideInInspector] private string typeName;
+            
             //public object data;
         }
         
@@ -36,7 +51,7 @@ namespace elZach.GraphScripting
         public void Init(TreeDirector director)
         {
             this.director = director;
-            rootNode.Init(director);
+            rootNode.Init();
         }
         
         public Node.State Evaluate()
@@ -116,7 +131,6 @@ namespace elZach.GraphScripting
             foreach (var child in GetChildren(node))
                 ForeachNode(child, action);
         }
-        
         // public List<SerializedNode> nodes = new List<SerializedNode>()
         // {
         //     new SerializedNode() {index = 0, nodeType = typeof(SelectorComposite).Namespace +"."+ nameof(SelectorComposite)} // rootnode

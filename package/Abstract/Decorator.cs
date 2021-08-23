@@ -1,18 +1,21 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
 
 namespace elZach.GraphScripting
 {
     public abstract class Decorator : Node
     {
         public Node Child;
-        // override void Init(TreeDirector director, Node child)
-        // {
-        //     Child = child;
-        // }
-        public override void Init(TreeDirector director)
+        
+        internal override void GetParametersRecursive(ref List<TreeContainer.Parameter> parameters)
         {
-            base.Init(director);
-            if(Child) Child.Init(director);
+            base.GetParametersRecursive(ref parameters);
+            if(Child) Child.GetParametersRecursive(ref parameters);
+        }
+        
+        public override void Init()
+        {
+            base.Init();
+            if(Child) Child.Init();
         }
 
         protected override State OnUpdate()

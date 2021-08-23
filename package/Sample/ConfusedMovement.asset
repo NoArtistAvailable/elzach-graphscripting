@@ -9,14 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cd6bcfbcb5973147bac60fb6ecf7e55, type: 3}
+  m_Script: {fileID: 11500000, guid: a4036bd1e95c10b47810a143fe70b4d7, type: 3}
   m_Name: TransformNode
   m_EditorClassIdentifier: 
   guid: 3698ef6479dfb4047b545146a67b74fa
-  position: {x: 333, y: 98}
-  state: 0
-  container: {fileID: 0}
-  targetTransformBindingName: AnotherName
+  position: {x: 333, y: 77}
+  container: {fileID: 11400000}
+  parameters:
+  - Parameter:
+      name: TranslationTarget
+      typeName: UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    path: /TranslateTransform/target
+  target: {fileID: 0}
   toMove: {x: -5, y: 0, z: 0}
   movementCurve:
     serializedVersion: 2
@@ -43,24 +48,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   time: 0.5
---- !u!114 &-6399998786330073624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36b363ccf3b1cbb488e0b1c2b828d522, type: 3}
-  m_Name: Repeat
-  m_EditorClassIdentifier: 
-  guid: b9d35cfd9d9e6b544adbc762f9fcc394
-  position: {x: 8.965118, y: -0.000034332275}
-  state: 0
-  container: {fileID: 0}
-  Child: {fileID: 7148292131132746138}
-  exitOnFail: 0
 --- !u!114 &-2473102899121218712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,14 +57,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cd6bcfbcb5973147bac60fb6ecf7e55, type: 3}
+  m_Script: {fileID: 11500000, guid: a4036bd1e95c10b47810a143fe70b4d7, type: 3}
   m_Name: TransformNode
   m_EditorClassIdentifier: 
   guid: 7b9d18ef53a958449abbc9c84de846d6
   position: {x: 333, y: 0}
-  state: 0
-  container: {fileID: 0}
-  targetTransformBindingName: AnotherName
+  container: {fileID: 11400000}
+  parameters:
+  - Parameter:
+      name: TranslationTarget
+      typeName: UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    path: /TranslateTransform/target
+  target: {fileID: 0}
   toMove: {x: 5, y: 0, z: 0}
   movementCurve:
     serializedVersion: 2
@@ -125,9 +117,9 @@ MonoBehaviour:
   - {fileID: 7148292131132746138}
   - {fileID: -8664605928005225299}
   - {fileID: 4876448239021107021}
-  - {fileID: -6399998786330073624}
-  - {fileID: 4790701230985913959}
---- !u!114 &4790701230985913959
+  - {fileID: 1260092115188537144}
+  - {fileID: 1092892620776517624}
+--- !u!114 &1092892620776517624
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,15 +128,44 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b8db587377a9d048810919c473737ff, type: 3}
-  m_Name: RotateTransform
+  m_Script: {fileID: 11500000, guid: d406b2d9a41c4484eb41a572fd0f37ee, type: 3}
+  m_Name: DistanceCheck
   m_EditorClassIdentifier: 
-  guid: ebb2b68180151fe49860cdefb79f731f
-  position: {x: 334.49997, y: 284.10855}
-  state: 0
+  guid: 72596b7f89e86eb48b9690fb16086295
+  position: {x: 332.99997, y: 231}
   container: {fileID: 11400000}
-  transformReference: AnotherName
-  toRotate: {x: 45, y: 0, z: 0}
+  parameters:
+  - Parameter:
+      name: TranslationTarget
+      typeName: UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    path: /DistanceCheck/targetA
+  - Parameter:
+      name: DistanceTarget
+      typeName: UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    path: /DistanceCheck/targetB
+  targetA: {fileID: 0}
+  targetB: {fileID: 0}
+  distance: 2
+--- !u!114 &1260092115188537144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36b363ccf3b1cbb488e0b1c2b828d522, type: 3}
+  m_Name: Repeat
+  m_EditorClassIdentifier: 
+  guid: a374b1e41ec16274daa8e69e3bfed58f
+  position: {x: 8.741081, y: -0.0000064373016}
+  container: {fileID: 11400000}
+  parameters: []
+  Child: {fileID: 7148292131132746138}
+  exitOnFail: 0
 --- !u!114 &4876448239021107021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,9 +179,9 @@ MonoBehaviour:
   m_Name: Wait
   m_EditorClassIdentifier: 
   guid: 4a17ce92e3da7e140a66bf2ee29fc45c
-  position: {x: 333, y: 187}
-  state: 0
-  container: {fileID: 0}
+  position: {x: 333, y: 154}
+  container: {fileID: 11400000}
+  parameters: []
   waitTime: 1.2
   expose: 0
 --- !u!114 &7143891114599926735
@@ -177,9 +198,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guid: ad62b2be021ea944c878233837d4aa32
   position: {x: -115.18013, y: -0.00003329277}
-  state: 0
-  container: {fileID: 0}
-  Child: {fileID: -6399998786330073624}
+  container: {fileID: 11400000}
+  parameters: []
+  Child: {fileID: 1260092115188537144}
 --- !u!114 &7148292131132746138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,11 +214,11 @@ MonoBehaviour:
   m_Name: Sequence
   m_EditorClassIdentifier: 
   guid: 06c9b2a7827613e41b55155139261dde
-  position: {x: 133, y: 0}
-  state: 0
-  container: {fileID: 0}
+  position: {x: 139, y: 0}
+  container: {fileID: 11400000}
+  parameters: []
   Children:
   - {fileID: -2473102899121218712}
   - {fileID: -8664605928005225299}
   - {fileID: 4876448239021107021}
-  - {fileID: 4790701230985913959}
+  - {fileID: 1092892620776517624}

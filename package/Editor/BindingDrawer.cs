@@ -15,18 +15,18 @@ namespace elZach.GraphScripting
             var dataProperty = property.FindPropertyRelative("data");
             EditorGUI.BeginProperty(position, label, property);
             position = EditorGUI.PrefixLabel(position, GUIUtility.GetControlID(FocusType.Passive), label);
-            DrawAsObjectField(position, dataProperty, Type.GetType(typeName));
+            DrawAsObjectField(position, dataProperty, Type.GetType(typeName));//fieldInfo.FieldType);
             EditorGUI.EndProperty();
         }
 
         public static void DrawAsObjectField(Rect position, SerializedProperty property, Type type)
         {
-            if (type != null)
+            if (type != null && type.IsSubclassOf(typeof(UnityEngine.Object)))
             {
                 property.objectReferenceValue =
                     EditorGUI.ObjectField(position, property.objectReferenceValue, type, true);
             }
-            else EditorGUI.LabelField(position, "nonvalid type: " + type + "!");
+            else EditorGUI.LabelField(position, $"invalid bindingtype: {type}!");
         }
 
 

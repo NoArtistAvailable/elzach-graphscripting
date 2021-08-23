@@ -1,31 +1,101 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
 namespace elZach.GraphScripting
 {
-    public abstract class Node : ScriptableObject
+    public abstract class Node : ScriptableObject, ISerializationCallbackReceiver
     {
+        [Serializable]
+        public class SerializableParameter
+        {
+            public TreeContainer.Parameter Parameter;
+            public string path;
+
+            public SerializableParameter(string name, Type type, string path)
+            {
+                Parameter = new TreeContainer.Parameter() { name = name, type = type };
+                this.path = path;
+            }
+            
+        }
         public enum State{Running, Failure, Success}
 
         [HideInInspector] public string guid;
         [HideInInspector] public Vector2 position;
-        [HideInInspector] public State state;
-        [HideInInspector] public TreeContainer container;
-        public TreeDirector director => container.director;
+        [NonSerialized] public State state;
+        [HideIfNotNull] public TreeContainer container;
+
+        [HideInInspector] 
+        public List<SerializableParameter> parameters = new List<SerializableParameter>();
+        public TreeDirector director => container?.director;
         public virtual Color GetColor() => new Color(0.25f,0.25f,0.25f);
         private bool started = false;
         public bool Started => started;
-        
 
-        public virtual List<TreeContainer.Parameter> GetPublicParameters()
+        // private void OnValidate()
+        // {
+        //     Debug.Log($"Validating {name}.",this);
+        // }
+
+        internal virtual void GetParametersRecursive(ref List<TreeContainer.Parameter> parameters)
         {
+            foreach (var parameter in GetPublicParameters())
+            {
+                if(!parameters.Exists(x=>x.name == parameter.name)) parameters.Add(parameter);
+            }
+        }
+        
+        public List<TreeContainer.Parameter> GetPublicParameters()
+        {
+            var list = new List<TreeContainer.Parameter>();
+            foreach (var param in parameters)
+            {
+                list.Add(param.Parameter);
+            }
+
+            return list;
             return new List<TreeContainer.Parameter>();
         }
         
-        public virtual void Init(TreeDirector director)
+        public virtual void Init()
         {
+            if (!director) return;
+            foreach (var serPar in parameters)
+            {
+                //Debug.Log("init " + serPar.path);
+                var param = serPar.Parameter;
+                foreach (var bind in director.bindings)
+                {
+                    if (bind.name == param.name && param.type.AssemblyQualifiedName == bind.type)
+                    {
+                        var myType = GetType();
+                        var currentPath = string.Empty;
+                        var lastSeparatorIndex = serPar.path.LastIndexOf("/", StringComparison.Ordinal);
+                        var searchPath =
+                            serPar.path.Substring(0, lastSeparatorIndex);
+                        var fieldName = serPar.path.Substring(lastSeparatorIndex + 1);
+                        while (myType != null && myType != typeof(Node))
+                        {
+                            currentPath += "/" + myType.Name;
+                            if (currentPath == searchPath)
+                            {
+                                var field = myType.GetField(fieldName,
+                                    BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+                                if (field != null)
+                                {
+                                    //Debug.Log("Set fields");
+                                    field.SetValue(this, bind.data);
+                                }
+                            }
+                            myType = myType.BaseType;
+                        }
+                    }
+                }
+            }
             //this.director = director;
         }
 
@@ -55,6 +125,68 @@ namespace elZach.GraphScripting
             Node clone = Instantiate(this);
             clone.name = this.name;
             return clone;
+        }
+
+        public void OnBeforeSerialize()
+        {
+            //Debug.Log($"(Before)Serializing {name}",this);
+            var shouldBeParameters = new List<SerializableParameter>();
+            var myType = GetType();
+            var currentPath = string.Empty;
+            while (myType != null && myType != typeof(Node))
+            {
+                currentPath += "/" + myType.Name;
+                var fields = myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+                foreach(var field in fields)
+                {
+                    var bindingAttribute = field.GetCustomAttribute<BindingAttribute>();
+                    // foreach(var att in bindingAttribute)
+                    //     if(att is BindingAttribute) Debug.Log(att.);
+                    if(bindingAttribute == null) continue;
+                    var fieldPath = currentPath + "/" + field.Name;
+                    shouldBeParameters.Add(new SerializableParameter(bindingAttribute.bindingName, field.FieldType, fieldPath));
+                }
+                myType = myType.BaseType;
+            }
+
+            foreach (var parameter in shouldBeParameters)
+            {
+                var existing = parameters.Find(x => x.path == parameter.path);
+                if (existing != null) parameter.Parameter = existing.Parameter;
+            }
+
+            parameters = shouldBeParameters;
+        } 
+
+        public void OnAfterDeserialize()
+        {
+        }
+
+        public bool TryGetSerializedParameter(string memberName, out SerializableParameter parameter)
+        {
+            if (parameters == null)
+            {
+                parameter = null;
+                return false;
+            }
+            var myType = GetType();
+            var currentPath = string.Empty;
+            while (myType != null && myType != typeof(Node))
+            {
+                currentPath += "/" + myType.Name;
+                myType = myType.BaseType;
+            }
+            currentPath += "/" + memberName;
+            foreach (var param in parameters)
+            {
+                if (param.path == currentPath)
+                {
+                    parameter = param;
+                    return true;
+                }
+            }
+            parameter = null;
+            return false;
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.Events;
 
 namespace elZach.GraphScripting
@@ -33,19 +34,42 @@ namespace elZach.GraphScripting
         }
         
         public TreeContainer data;
-        public Dictionary<string, ISerializable> Bindings = new Dictionary<string, ISerializable>();
-
-        public List<Binding> test = new List<Binding>();
+        public List<Binding> bindings = new List<Binding>();
 
         [ContextMenu("Set Test")]
         void SetTest()
         {
-            test = new List<Binding>()
+            bindings = new List<Binding>()
             {
                 new Binding("SomeName", typeof(TreeDirector)),
                 new Binding("AnotherName", typeof(Transform)),
-                new Binding("AnEvent?", typeof(UnityEngine.Events.UnityEvent))
+                new Binding("AnEvent?", typeof(UnityEngine.Events.UnityEvent)),
+                new Binding("SomeVector", typeof(Vector3))
             };
+        }
+
+        private void OnValidate()
+        {
+            GetBindings();
+        }
+
+        [ContextMenu("Get Bindings")]
+        public void GetBindings()
+        {
+            var parameters = new List<TreeContainer.Parameter>();
+            data.rootNode.GetParametersRecursive(ref parameters);
+            List<Binding> newBindings = new List<Binding>();
+            //Debug.Log($"Found parameters: {parameters.Count}");
+            foreach (var parameter in parameters)
+                newBindings.Add(new Binding(parameter.name, parameter.type));
+
+            foreach (var binding in newBindings)
+            {
+                var existing = bindings.Find(x => x.name == binding.name && x.type == binding.type);
+                if (existing != null) binding.data = existing.data;
+            }
+
+            bindings = newBindings;
         }
         
         private void Start()

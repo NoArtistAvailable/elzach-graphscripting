@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace elZach.GraphScripting
 {
@@ -7,15 +9,30 @@ namespace elZach.GraphScripting
         public Node Child;
         public override Color GetColor() => new Color(0.4f, 0.2f, 0.2f);
 
-        public override void Init(TreeDirector director)
+        internal override void GetParametersRecursive(ref List<TreeContainer.Parameter> parameters)
         {
-            base.Init(director);
-            if(Child) Child.Init(director);
+            base.GetParametersRecursive(ref parameters);
+            if(Child) Child.GetParametersRecursive(ref parameters);
+        }
+
+        public override void Init()
+        {
+            base.Init();
+            if(Child) Child.Init();
         }
         
         protected override State OnUpdate()
         {
+            // try
+            // {
             return Child.Evaluate();
+            // }
+            // catch (Exception e)
+            // {
+            //     Console.WriteLine(e);
+            //     throw;
+            // }
+            
         }
 
         public override Node Clone()
