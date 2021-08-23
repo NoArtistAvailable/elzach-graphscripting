@@ -56,3 +56,4 @@ projects/*/Library
 projects/*/Temp
 projects/*/UserSettings
 projects/*/Logs
+*.cache
