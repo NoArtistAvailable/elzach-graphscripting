@@ -17,7 +17,6 @@ namespace elZach.GraphScripting
         {
             var me = property.serializedObject.targetObject as Node;
             if (!me) return;
-
             if (me.TryGetSerializedParameter(property.name, out var param))
             {
                 using (var changed = new EditorGUI.ChangeCheckScope())

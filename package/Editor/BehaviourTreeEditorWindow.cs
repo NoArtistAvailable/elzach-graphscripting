@@ -1,3 +1,4 @@
+using System;
 using elZach.GraphScripting;
 using UnityEditor;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class BehaviourTreeEditorWindow : EditorWindow
 {
     private BehaviourTreeView treeView;
     private InspectorView inspectorView;
+    private NodeView selectedNodeView;
     
     [MenuItem("Window/Graph/Scripting Graph")]
     public static void Init()
@@ -18,13 +20,23 @@ public class BehaviourTreeEditorWindow : EditorWindow
         wnd.minSize = new Vector2(250, 250);
     }
 
+    private void OnFocus()
+    {
+        SceneView.duringSceneGui -= OnSceneGUI;
+        SceneView.duringSceneGui += OnSceneGUI;
+    }
+
     void OnEnable()
     {
         EditorApplication.playModeStateChanged -= OnPlayModeChanged;
         EditorApplication.playModeStateChanged += OnPlayModeChanged;
     }
     
-    void OnDisable() => EditorApplication.playModeStateChanged -= OnPlayModeChanged;
+    void OnDisable()
+    { 
+        EditorApplication.playModeStateChanged -= OnPlayModeChanged;
+        SceneView.duringSceneGui -= OnSceneGUI;
+    } 
 
     private void OnPlayModeChanged(PlayModeStateChange state)
     {
@@ -68,11 +80,25 @@ public class BehaviourTreeEditorWindow : EditorWindow
     void OnNodeViewSelectionChanged(NodeView nodeView)
     {
         inspectorView.UpdateSelection(nodeView);
+        selectedNodeView = nodeView;
     }
 
     void OnInspectorUpdate()
     {
         treeView?.UpdateNodeViewStates();
     }
+
+    void OnSceneGUI(SceneView sceneView)
+    {
+        //Handles.BeginGUI();
+        if(selectedNodeView != null) selectedNodeView.node.OnDrawSelected(sceneView);
+        //Handles.EndGUI();
+    }
+
+    // [DrawGizmo()]
+    // static void DrawGizmos(Component comp, GizmoType gizmoType)
+    // {
+    //     Debug.Log("huh");
+    // }
     
 }

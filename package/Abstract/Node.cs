@@ -127,6 +127,11 @@ namespace elZach.GraphScripting
             return clone;
         }
 
+        public virtual void OnDrawSelected(SceneView sceneView)
+        {
+            //Debug.Log(name);
+        }
+
         public void OnBeforeSerialize()
         {
             //Debug.Log($"(Before)Serializing {name}",this);
