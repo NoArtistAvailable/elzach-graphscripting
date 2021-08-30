@@ -6,15 +6,18 @@ namespace elZach.GraphScripting
     public class DistanceCheck : Decorator
     {
         [Binding] public Transform targetA, targetB;
-        [FormerlySerializedAs("Test"), Header("Hollo"), Range(0f,10f)]public float distance = 1f;
+        public float distance = 1f;
         
         protected override State OnUpdate()
         {
-            if (!targetA || !targetB) return State.Failure;
+            if (!targetA || !targetB)
+            {
+                Debug.Log("NULLLLLLLLLL");
+                return State.Failure;
+            }
             if (Vector3.Distance(targetA.position, targetB.position) > distance)
-                if (Child != null) return base.Evaluate();
-                else return State.Running;
-            return State.Success;
+                return State.Running;
+            return base.OnUpdate();
         }
 
 #if UNITY_EDITOR
