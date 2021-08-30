@@ -141,6 +141,8 @@ namespace elZach.GraphScripting
             while (myType != null && myType != typeof(Node))
             {
                 currentPath += "/" + myType.Name;
+                foreach (var shouldBeParameter in shouldBeParameters)
+                    shouldBeParameter.path = "/" + myType.Name + shouldBeParameter.path;
                 var fields = myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
                 foreach(var field in fields)
                 {
@@ -178,7 +180,7 @@ namespace elZach.GraphScripting
             var currentPath = string.Empty;
             while (myType != null && myType != typeof(Node))
             {
-                currentPath += "/" + myType.Name;
+                currentPath = "/" + myType.Name + currentPath;
                 myType = myType.BaseType;
             }
             currentPath += "/" + memberName;

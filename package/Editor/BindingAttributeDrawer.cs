@@ -16,7 +16,11 @@ namespace elZach.GraphScripting
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             var me = property.serializedObject.targetObject as Node;
-            if (!me) return;
+            if (!me)
+            {
+                EditorGUILayout.LabelField("Target is not a Node");
+                return;
+            }
             if (me.TryGetSerializedParameter(property.name, out var param))
             {
                 using (var changed = new EditorGUI.ChangeCheckScope())
