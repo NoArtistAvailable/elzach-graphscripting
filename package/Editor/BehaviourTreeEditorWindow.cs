@@ -91,7 +91,7 @@ public class BehaviourTreeEditorWindow : EditorWindow
     void OnSceneGUI(SceneView sceneView)
     {
         //Handles.BeginGUI();
-        if(selectedNodeView != null) selectedNodeView.node.OnDrawSelected(sceneView);
+        if(selectedNodeView != null) selectedNodeView.node.OnDrawSelected();
         //Handles.EndGUI();
     }
 

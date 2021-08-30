@@ -57,7 +57,6 @@ namespace elZach.GraphScripting
             }
 
             return list;
-            return new List<TreeContainer.Parameter>();
         }
         
         public virtual void Init()
@@ -127,7 +126,7 @@ namespace elZach.GraphScripting
         }
 
         #if UNITY_EDITOR
-        public virtual void OnDrawSelected(UnityEditor.SceneView sceneView)
+        public virtual void OnDrawSelected()
         {
             //Debug.Log(name);
         }

@@ -15,7 +15,7 @@ namespace elZach.GraphScripting
         }
 
 #if UNITY_EDITOR
-        public override void OnDrawSelected(UnityEditor.SceneView sceneView)
+        public override void OnDrawSelected()
         {
             if (!targetA || !targetB) return;
             //Gizmos.DrawLine(targetA.position, targetB.position);
