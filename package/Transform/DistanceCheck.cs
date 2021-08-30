@@ -1,16 +1,19 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace elZach.GraphScripting
 {
-    public class DistanceCheck : Node
+    public class DistanceCheck : Decorator
     {
         [Binding] public Transform targetA, targetB;
-        public float distance = 1f;
+        [FormerlySerializedAs("Test"), Header("Hollo"), Range(0f,10f)]public float distance = 1f;
         
         protected override State OnUpdate()
         {
             if (!targetA || !targetB) return State.Failure;
-            if (Vector3.Distance(targetA.position, targetB.position) > distance) return State.Running;
+            if (Vector3.Distance(targetA.position, targetB.position) > distance)
+                if (Child != null) return base.Evaluate();
+                else return State.Running;
             return State.Success;
         }
 
