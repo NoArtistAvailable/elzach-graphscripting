@@ -6,16 +6,21 @@ namespace elZach.GraphScripting
     {
         protected override State OnUpdate()
         {
+            State returnState = State.Failure;
             foreach (var child in Children)
             {
                 State childState = child.Evaluate();
                 switch (childState)
                 {
                     case State.Running: return State.Running;
-                    //case State.Success: return State.Success;
+                    case State.Success:
+                    {
+                        returnState = State.Success;
+                        break;
+                    }
                 }
             }
-            return State.Success;
+            return returnState;
         }
 
         // public SelectorComposite(TreeDirector director, List<Node> children) : base(director, children)

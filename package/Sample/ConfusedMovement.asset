@@ -48,6 +48,75 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   time: 0.5
+  referencedVectorName: 
+--- !u!114 &-8362225949430242809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00d739e50497c7145a320be98f1427e9, type: 3}
+  m_Name: Select
+  m_EditorClassIdentifier: 
+  guid: 52f7ef8852d9a7143827b8a7a6198306
+  position: {x: -119.999985, y: 49.450005}
+  container: {fileID: 11400000}
+  parameters: []
+  Children:
+  - {fileID: 1092892620776517624}
+  - {fileID: -7198685978329548580}
+--- !u!114 &-7198685978329548580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4036bd1e95c10b47810a143fe70b4d7, type: 3}
+  m_Name: TranslateTransform
+  m_EditorClassIdentifier: 
+  guid: bd682861c7354be4a9c89f50e17f50d8
+  position: {x: -3.000004, y: 115.49998}
+  container: {fileID: 11400000}
+  parameters:
+  - Parameter:
+      name: DistanceTarget
+      typeName: UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    path: /TranslateTransform/target
+  target: {fileID: 0}
+  toMove: {x: 2.5, y: 0, z: 0}
+  movementCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  time: 5
+  referencedVectorName: AVector
 --- !u!114 &-2473102899121218712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,6 +165,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   time: 0.5
+  referencedVectorName: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,6 +189,8 @@ MonoBehaviour:
   - {fileID: 4876448239021107021}
   - {fileID: 1260092115188537144}
   - {fileID: 1092892620776517624}
+  - {fileID: -7198685978329548580}
+  - {fileID: -8362225949430242809}
 --- !u!114 &1092892620776517624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,10 +217,17 @@ MonoBehaviour:
       typeName: UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
     path: /Decorator/DistanceCheck/targetB
-  Child: {fileID: 1260092115188537144}
+  - Parameter:
+      name: AVector
+      typeName: elZach.GraphScripting.Referenced`1[[UnityEngine.Vector3, UnityEngine.CoreModule,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], elZach.SimpleAI.BehaviourTree,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    path: /Decorator/DistanceCheck/someVector
+  Child: {fileID: 7148292131132746138}
   targetA: {fileID: 0}
   targetB: {fileID: 0}
-  distance: 2
+  distance: 4
+  someVector: {fileID: 0}
 --- !u!114 &1260092115188537144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,10 +241,10 @@ MonoBehaviour:
   m_Name: Repeat
   m_EditorClassIdentifier: 
   guid: a374b1e41ec16274daa8e69e3bfed58f
-  position: {x: 165.055, y: -0.000019788742}
+  position: {x: -222.86998, y: 49.00001}
   container: {fileID: 11400000}
   parameters: []
-  Child: {fileID: 7148292131132746138}
+  Child: {fileID: -8362225949430242809}
   cycles: 35
   cycle: 0
   exitOnFail: 0
@@ -200,10 +279,10 @@ MonoBehaviour:
   m_Name: Root
   m_EditorClassIdentifier: 
   guid: ad62b2be021ea944c878233837d4aa32
-  position: {x: -115.18013, y: -0.00003329277}
+  position: {x: -308.68985, y: 49}
   container: {fileID: 11400000}
   parameters: []
-  Child: {fileID: 1092892620776517624}
+  Child: {fileID: 1260092115188537144}
 --- !u!114 &7148292131132746138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,7 +296,7 @@ MonoBehaviour:
   m_Name: Sequence
   m_EditorClassIdentifier: 
   guid: 06c9b2a7827613e41b55155139261dde
-  position: {x: 295.055, y: -0.000019788742}
+  position: {x: 293.6775, y: -0.0000042915344}
   container: {fileID: 11400000}
   parameters: []
   Children:
