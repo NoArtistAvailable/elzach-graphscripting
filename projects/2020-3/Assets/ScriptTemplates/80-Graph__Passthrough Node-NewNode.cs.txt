@@ -1,0 +1,21 @@
+using UnityEngine;
+using elZach.GraphScripting;
+
+public class #SCRIPTNAME# : Decorator
+{
+    //[Binding] public Transform target; //sample how to do a binded property    
+    //public override Color GetColor() => new Color(0.3f,0.5f,0.4f); //use for custom node color
+    
+    //gets evaluated once everytime node gets entered
+    protected override void OnStart()
+    {
+        #NOTRIM#
+    }
+    
+    //gets evaluated everytime -> return State.Running to stay in node
+    protected override State OnUpdate()
+    {
+        #NOTRIM#
+        return Child.Evaluate();
+    }
+}
