@@ -26,6 +26,7 @@ namespace elZach.GraphScripting
         [HideInInspector] public string guid;
         [HideInInspector] public Vector2 position;
         [NonSerialized] public State state;
+        [NonSerialized] public int lastEvaluation;
         [HideIfNotNull] public TreeContainer container;
 
         [HideInInspector] 
@@ -105,6 +106,7 @@ namespace elZach.GraphScripting
         
         public State Evaluate()
         {
+            lastEvaluation = container.currentEvaluation;
             if (!started)
             {
                 started = true;

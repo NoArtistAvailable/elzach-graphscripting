@@ -36,6 +36,7 @@ namespace elZach.GraphScripting
         [HideInInspector] public TreeDirector director;
         public Node rootNode;
         public List<Node> nodes = new List<Node>();
+        [NonSerialized] public int currentEvaluation;
         public List<Parameter> Parameters => GetExposedParameters();
 
         private List<Parameter> GetExposedParameters()
@@ -51,11 +52,13 @@ namespace elZach.GraphScripting
         public void Init(TreeDirector director)
         {
             this.director = director;
+            currentEvaluation = -1;
             rootNode.Init();
         }
         
         public Node.State Evaluate()
         {
+            currentEvaluation++;
             return rootNode.Evaluate();
         }
 

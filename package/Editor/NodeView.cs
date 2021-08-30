@@ -84,7 +84,7 @@ namespace elZach.GraphScripting
 
         public void UpdateState()
         {
-            if (node.Started && node.state == Node.State.Running)
+            if (Application.isPlaying && node.lastEvaluation == node.container.currentEvaluation && node.state == Node.State.Running)
             {
                 if (this.input?.contentContainer != null)
                 {
