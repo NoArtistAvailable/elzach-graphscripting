@@ -71,14 +71,15 @@ namespace elZach.GraphScripting
                     if (bind.name == param.name && param.type.AssemblyQualifiedName == bind.type)
                     {
                         var myType = GetType();
+                        var parentType = myType;
                         var currentPath = string.Empty;
                         var lastSeparatorIndex = serPar.path.LastIndexOf("/", StringComparison.Ordinal);
                         var searchPath =
                             serPar.path.Substring(0, lastSeparatorIndex);
                         var fieldName = serPar.path.Substring(lastSeparatorIndex + 1);
-                        while (myType != null && myType != typeof(Node))
+                        while (parentType != null && parentType != typeof(Node))
                         {
-                            currentPath += "/" + myType.Name;
+                            currentPath = "/" + parentType.Name + currentPath;
                             if (currentPath == searchPath)
                             {
                                 var field = myType.GetField(fieldName,
@@ -89,7 +90,7 @@ namespace elZach.GraphScripting
                                     field.SetValue(this, bind.data);
                                 }
                             }
-                            myType = myType.BaseType;
+                            parentType = parentType.BaseType;
                         }
                     }
                 }
