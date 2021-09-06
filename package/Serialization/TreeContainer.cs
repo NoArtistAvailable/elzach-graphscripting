@@ -39,6 +39,13 @@ namespace elZach.GraphScripting
         [NonSerialized] public int currentEvaluation;
         public List<Parameter> Parameters => GetExposedParameters();
 
+        public T GetFromDirector<T>(string name) where T:UnityEngine.Object
+        {
+            var data = director.bindings.Find(x => x.name == name)?.data;
+            if (data && data is T) return data as T;
+            return null;
+        }
+
         private List<Parameter> GetExposedParameters()
         {
             var parameters = new List<Parameter>();

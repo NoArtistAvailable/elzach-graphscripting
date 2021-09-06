@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -44,8 +46,15 @@ namespace elZach.GraphScripting
                 new Binding("SomeName", typeof(TreeDirector)),
                 new Binding("AnotherName", typeof(Transform)),
                 new Binding("AnEvent?", typeof(UnityEngine.Events.UnityEvent)),
-                new Binding("SomeVector", typeof(Vector3))
+                new Binding("SomeVector", typeof(Vector3)),
+                new Binding("ReferencedVector3", typeof(Referenced<Vector3>), new Referenced<Vector3>(Vector3.up))
             };
+        }
+
+        [ContextMenu("Get Test")]
+        void GetTest()
+        {
+            Debug.Log((bindings[4].data as Referenced<Vector3>).Value);
         }
 
         private void OnValidate()
@@ -67,6 +76,23 @@ namespace elZach.GraphScripting
             {
                 var existing = bindings.Find(x => x.name == binding.name && x.type == binding.type);
                 if (existing != null) binding.data = existing.data;
+                if (binding.type.Contains(typeof(Referenced).AssemblyQualifiedName))
+                {
+                    var dataType = Type.GetType(binding.type); //Type.GetType((binding.data as Referenced).typeName);
+                    // var genericBase = typeof(Referenced<>);
+                    // var combinedType = genericBase.MakeGenericType(dataType);
+                    dynamic instance = Activator.CreateInstance(dataType);
+                    binding.data = instance; //Convert.ChangeType(instance, dataType.DeclaringType);
+                    // binding.data = new Referenced()
+                    //     { typeName = Type.GetType(binding.type).GetGenericTypeDefinition().AssemblyQualifiedName };
+                    // var dataType = Type.GetType(binding.type);
+                    // var instance = Activator.CreateInstance(dataType,BindingFlags.Public);
+                    // binding.data = instance as Object;
+                    // var refData = binding.data as Referenced;
+                    // var genericType = binding.data.GetType().TypeInitializer;
+                    // var actualData = genericType.GetGenericArguments();
+                    // binding.data = new Referenced(){}
+                }
             }
 
             bindings = newBindings;

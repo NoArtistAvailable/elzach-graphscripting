@@ -117,6 +117,30 @@ MonoBehaviour:
     m_RotationOrder: 4
   time: 5
   referencedVectorName: AVector
+--- !u!114 &-4541110304887820302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7a5ad9ec7f28ae4c85f94faf7c5a97f, type: 3}
+  m_Name: SetVectorTest
+  m_EditorClassIdentifier: 
+  guid: bd601acbdae937844b92cdd0755f91da
+  position: {x: 0, y: 0}
+  container: {fileID: 11400000}
+  parameters:
+  - Parameter:
+      name: 
+      typeName: elZach.GraphScripting.Referenced`1[[UnityEngine.Vector3, UnityEngine.CoreModule,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], elZach.SimpleAI.BehaviourTree,
+        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    path: /Decorator/SetVectorTest/vector
+  Child: {fileID: 0}
+  vector: {fileID: 0}
 --- !u!114 &-2473102899121218712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,6 +215,7 @@ MonoBehaviour:
   - {fileID: 1092892620776517624}
   - {fileID: -7198685978329548580}
   - {fileID: -8362225949430242809}
+  - {fileID: -4541110304887820302}
 --- !u!114 &1092892620776517624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,17 +242,11 @@ MonoBehaviour:
       typeName: UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
     path: /Decorator/DistanceCheck/targetB
-  - Parameter:
-      name: AVector
-      typeName: elZach.GraphScripting.Referenced`1[[UnityEngine.Vector3, UnityEngine.CoreModule,
-        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], elZach.SimpleAI.BehaviourTree,
-        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-    path: /Decorator/DistanceCheck/someVector
   Child: {fileID: 7148292131132746138}
   targetA: {fileID: 0}
   targetB: {fileID: 0}
   distance: 4
-  someVector: {fileID: 0}
+  vectorReference: AVector
 --- !u!114 &1260092115188537144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,7 +260,7 @@ MonoBehaviour:
   m_Name: Repeat
   m_EditorClassIdentifier: 
   guid: a374b1e41ec16274daa8e69e3bfed58f
-  position: {x: -222.86998, y: 49.00001}
+  position: {x: -343.7501, y: 49.00001}
   container: {fileID: 11400000}
   parameters: []
   Child: {fileID: -8362225949430242809}
@@ -279,7 +298,7 @@ MonoBehaviour:
   m_Name: Root
   m_EditorClassIdentifier: 
   guid: ad62b2be021ea944c878233837d4aa32
-  position: {x: -308.68985, y: 49}
+  position: {x: -429.75012, y: 49.00001}
   container: {fileID: 11400000}
   parameters: []
   Child: {fileID: 1260092115188537144}
