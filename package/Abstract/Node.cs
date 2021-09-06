@@ -67,9 +67,9 @@ namespace elZach.GraphScripting
             {
                 //Debug.Log("init " + serPar.path);
                 var param = serPar.Parameter;
-                foreach (var bind in director.bindings)
+                foreach (var bind in director.GetBindingsForRealz())
                 {
-                    if (bind.name == param.name && param.type.AssemblyQualifiedName == bind.type)
+                    if (bind.Name == param.name && param.type.AssemblyQualifiedName == bind.Type)
                     {
                         var myType = GetType();
                         var parentType = myType;
@@ -88,7 +88,7 @@ namespace elZach.GraphScripting
                                 if (field != null)
                                 {
                                     //Debug.Log("Set fields");
-                                    field.SetValue(this, bind.data);
+                                    field.SetValue(this, bind.Value);
                                 }
                             }
                             parentType = parentType.BaseType;

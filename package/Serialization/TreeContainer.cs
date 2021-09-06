@@ -13,15 +13,12 @@ namespace elZach.GraphScripting
         public class Parameter
         {
             public string name;
-            private bool _triedGetting;
             private Type _type;
             public Type type
             {
                 get
                 {
-                    //Debug.Log($"Getting type from {typeName}");
-                    if (/*!_triedGetting &&*/ _type == null) _type = Type.GetType(typeName);
-                    //_triedGetting = true;
+                    if (_type == null) _type = Type.GetType(typeName);
                     return _type;
                 }
                 set => typeName = value.AssemblyQualifiedName;

@@ -48,7 +48,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   time: 0.5
-  referencedVectorName: 
 --- !u!114 &-8362225949430242809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,7 +115,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   time: 5
-  referencedVectorName: AVector
 --- !u!114 &-4541110304887820302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,17 +128,19 @@ MonoBehaviour:
   m_Name: SetVectorTest
   m_EditorClassIdentifier: 
   guid: bd601acbdae937844b92cdd0755f91da
-  position: {x: 0, y: 0}
+  position: {x: -271, y: 48.999996}
   container: {fileID: 11400000}
   parameters:
   - Parameter:
-      name: 
+      name: IsAVector
       typeName: elZach.GraphScripting.Referenced`1[[UnityEngine.Vector3, UnityEngine.CoreModule,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], elZach.SimpleAI.BehaviourTree,
         Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
     path: /Decorator/SetVectorTest/vector
-  Child: {fileID: 0}
-  vector: {fileID: 0}
+  Child: {fileID: -8362225949430242809}
+  vector:
+    typeName: 
+    valueString: 
 --- !u!114 &-2473102899121218712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,7 +189,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   time: 0.5
-  referencedVectorName: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -246,7 +245,6 @@ MonoBehaviour:
   targetA: {fileID: 0}
   targetB: {fileID: 0}
   distance: 4
-  vectorReference: AVector
 --- !u!114 &1260092115188537144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,10 +258,10 @@ MonoBehaviour:
   m_Name: Repeat
   m_EditorClassIdentifier: 
   guid: a374b1e41ec16274daa8e69e3bfed58f
-  position: {x: -343.7501, y: 49.00001}
+  position: {x: -357.68787, y: 48.999996}
   container: {fileID: 11400000}
   parameters: []
-  Child: {fileID: -8362225949430242809}
+  Child: {fileID: -4541110304887820302}
   cycles: 35
   cycle: 0
   exitOnFail: 0
@@ -298,7 +296,7 @@ MonoBehaviour:
   m_Name: Root
   m_EditorClassIdentifier: 
   guid: ad62b2be021ea944c878233837d4aa32
-  position: {x: -429.75012, y: 49.00001}
+  position: {x: -443.6879, y: 48.999996}
   container: {fileID: 11400000}
   parameters: []
   Child: {fileID: 1260092115188537144}

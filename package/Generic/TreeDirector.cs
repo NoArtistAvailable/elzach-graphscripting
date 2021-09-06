@@ -1,25 +1,27 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Runtime.Serialization;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.Animations;
-using UnityEngine.Events;
 
 namespace elZach.GraphScripting
 {
+    public interface IBinding
+    {
+        string Name { get; }
+        string  Type { get; }
+        object Value { get; }
+    }
+    
     public class TreeDirector : MonoBehaviour
     {
         [Serializable]
-        public class Binding
+        public class Binding : IBinding
         {
             public string name;
             public string type;
             [SerializeField]
             public UnityEngine.Object data;
-
             public Binding(string name, string type, UnityEngine.Object data = null)
             {
                 this.name = name;
@@ -33,10 +35,15 @@ namespace elZach.GraphScripting
                 this.type = type.AssemblyQualifiedName;
                 this.data = data;
             }
+
+            public string Name => name;
+            public string Type => type;
+            public object Value => data;
         }
         
         public TreeContainer data;
         public List<Binding> bindings = new List<Binding>();
+        public List<Referenced> values = new List<Referenced>();
 
         [ContextMenu("Set Test")]
         void SetTest()
@@ -46,15 +53,19 @@ namespace elZach.GraphScripting
                 new Binding("SomeName", typeof(TreeDirector)),
                 new Binding("AnotherName", typeof(Transform)),
                 new Binding("AnEvent?", typeof(UnityEngine.Events.UnityEvent)),
-                new Binding("SomeVector", typeof(Vector3)),
-                new Binding("ReferencedVector3", typeof(Referenced<Vector3>), new Referenced<Vector3>(Vector3.up))
+                new Binding("SomeVector", typeof(Vector3))
+            };
+
+            values = new List<Referenced>()
+            {
+                new Referenced<Vector3>(Vector3.down)
             };
         }
 
         [ContextMenu("Get Test")]
         void GetTest()
         {
-            Debug.Log((bindings[4].data as Referenced<Vector3>).Value);
+            Debug.Log(values[0].Value);
         }
 
         private void OnValidate()
@@ -62,27 +73,65 @@ namespace elZach.GraphScripting
             GetBindings();
         }
 
+        public class MyType
+        {
+            public float Hello;
+        }
+
         [ContextMenu("Get Bindings")]
         public void GetBindings()
         {
+            foreach (var val in values)
+            {
+                val.Value = new MyType(); 
+            }
+            
             var parameters = new List<TreeContainer.Parameter>();
             data.rootNode.GetParametersRecursive(ref parameters);
             List<Binding> newBindings = new List<Binding>();
+            List<Referenced> newValues = new List<Referenced>();
             //Debug.Log($"Found parameters: {parameters.Count}");
             foreach (var parameter in parameters)
                 newBindings.Add(new Binding(parameter.name, parameter.type));
 
-            foreach (var binding in newBindings)
+
+            for (var index = newBindings.Count - 1; index >= 0; index--)
             {
+                var binding = newBindings[index];
                 var existing = bindings.Find(x => x.name == binding.name && x.type == binding.type);
-                if (existing != null) binding.data = existing.data;
-                if (binding.type.Contains(typeof(Referenced).AssemblyQualifiedName))
+                if (existing != null)
                 {
-                    var dataType = Type.GetType(binding.type); //Type.GetType((binding.data as Referenced).typeName);
+                    binding.data = existing.data;
+                    continue;
+                }
+
+                var existingValue = values.Find(x => x.name == binding.name);
+                if (existingValue != null)
+                {
+                    Debug.Log("FOUND REFERENCE " + existingValue);
+                    newValues.Add(existingValue);
+                    newBindings.RemoveAt(index);
+                    continue;
+                }
+
+                var dataType = Type.GetType(binding.type);
+                if (dataType != null && dataType.IsGenericType && dataType.BaseType == typeof(Referenced))
+                {
                     // var genericBase = typeof(Referenced<>);
                     // var combinedType = genericBase.MakeGenericType(dataType);
-                    dynamic instance = Activator.CreateInstance(dataType);
-                    binding.data = instance; //Convert.ChangeType(instance, dataType.DeclaringType);
+                    var instance = (Referenced)Activator.CreateInstance(dataType);
+                    instance.name = binding.name;
+                    instance.typeName = dataType.GenericTypeArguments.FirstOrDefault()!.AssemblyQualifiedName;
+                    instance.Value = binding.Value;
+                    Debug.Log(instance.Value);
+                    Debug.Log(instance);
+                    newValues.Add(instance);
+                    newBindings.RemoveAt(index);
+
+                    Debug.Log(((Referenced<Vector3>)instance).Value);
+                    instance.OnBeforeSerialize();
+
+                    //values = instance;// Convert.ChangeType(instance, dataType.DeclaringType);
                     // binding.data = new Referenced()
                     //     { typeName = Type.GetType(binding.type).GetGenericTypeDefinition().AssemblyQualifiedName };
                     // var dataType = Type.GetType(binding.type);
@@ -96,8 +145,15 @@ namespace elZach.GraphScripting
             }
 
             bindings = newBindings;
+            values = newValues;
         }
-        
+
+        public IEnumerable<IBinding> GetBindingsForRealz()
+        {
+            foreach(var bind in bindings) yield return bind;
+            foreach (var val in values) yield return val;
+        }
+
         private void Start()
         {
             if (!data) return;
