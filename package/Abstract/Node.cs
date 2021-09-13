@@ -59,6 +59,22 @@ namespace elZach.GraphScripting
 
             return list;
         }
+
+        public List<object> GetAdditionalInputs()
+        {
+            var additionalInputs = new List<object>();
+            var myType = GetType();
+            var fields = myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+            foreach(var field in fields)
+            {
+                var bindingAttribute = field.GetCustomAttribute<AssignPortAttribute>();
+                // foreach(var att in bindingAttribute)
+                //     if(att is BindingAttribute) Debug.Log(att.);
+                if(bindingAttribute == null) continue;
+                if(bindingAttribute.isInput) additionalInputs.Add(field.GetValue(this));
+            }
+            return additionalInputs;
+        }
         
         public virtual void Init()
         {

@@ -14,6 +14,7 @@ namespace elZach.GraphScripting
         public Action<NodeView> onNodeSelected;
         public Node node;
         public UnityEditor.Experimental.GraphView.Port input, output;
+        public List<UnityEditor.Experimental.GraphView.Port> additionalInputPorts, additionalOutputPorts;
 
         public NodeView(Node node)
         {
@@ -38,6 +39,18 @@ namespace elZach.GraphScripting
             {
                 input.portName = "";
                 inputContainer.Add(input);
+            }
+            foreach (var additionalInput in node.GetAdditionalInputs())
+            {
+                if (additionalInputPorts == null)
+                {
+                    inputContainer.Add(new Label("------------"));
+                    additionalInputPorts = new List<Port>();
+                }
+                var port = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, additionalInput.GetType());
+                port.portName = additionalInput.ToString();
+                additionalInputPorts.Add(port);
+                inputContainer.Add(port);
             }
         }
         private void CreateOutputPorts()

@@ -73,18 +73,18 @@ namespace elZach.GraphScripting
             GetBindings();
         }
 
-        public class MyType
-        {
-            public float Hello;
-        }
+        // public class MyType
+        // {
+        //     public float Hello;
+        // }
 
         [ContextMenu("Get Bindings")]
         public void GetBindings()
         {
-            foreach (var val in values)
-            {
-                val.Value = new MyType(); 
-            }
+            // foreach (var val in values)
+            // {
+            //     val.Value = new MyType(); 
+            // }
             
             var parameters = new List<TreeContainer.Parameter>();
             data.rootNode.GetParametersRecursive(ref parameters);
@@ -108,7 +108,7 @@ namespace elZach.GraphScripting
                 var existingValue = values.Find(x => x.name == binding.name);
                 if (existingValue != null)
                 {
-                    Debug.Log("FOUND REFERENCE " + existingValue);
+                    //Debug.Log("FOUND REFERENCE " + existingValue);
                     newValues.Add(existingValue);
                     newBindings.RemoveAt(index);
                     continue;

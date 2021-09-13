@@ -688,11 +688,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 801442671c49fa046b2523231d5d90da, type: 2}
   bindings:
-  - name: IsAVector
-    type: elZach.GraphScripting.Referenced`1[[UnityEngine.Vector3, UnityEngine.CoreModule,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], elZach.SimpleAI.BehaviourTree,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-    data: {fileID: 0}
   - name: TranslationTarget
     type: UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
@@ -702,6 +697,7 @@ MonoBehaviour:
       PublicKeyToken=null
     data: {fileID: 0}
   values:
-  - typeName: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-    valueString: '{"x":0.0,"y":-1.0,"z":0.0}'
+  - name: IsAVector
+    typeName: elZach.GraphScripting.TreeDirector+MyType, elZach.SimpleAI.BehaviourTree,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    valueString: 
