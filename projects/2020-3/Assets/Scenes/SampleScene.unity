@@ -691,13 +691,9 @@ MonoBehaviour:
   - name: TranslationTarget
     type: UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-    data: {fileID: 0}
+    data: {fileID: 2123138833}
   - name: DistanceTarget
     type: UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-    data: {fileID: 0}
-  values:
-  - name: IsAVector
-    typeName: elZach.GraphScripting.TreeDirector+MyType, elZach.SimpleAI.BehaviourTree,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-    valueString: 
+    data: {fileID: 1310976563}
+  values: []

@@ -68,6 +68,16 @@ using Node = elZach.GraphScripting.Node;
                     var childView = GetNodeView(child);
                     Edge edge = parentView.output.ConnectTo(childView.input);
                     AddElement(edge);
+                    if (child.extraConnections.Count > 0)
+                    {
+                        foreach (var extraConnection in child.extraConnections)
+                        {
+                            Edge extraEdge = GetNodeView(extraConnection.origin)
+                                .additionalOutputPorts[extraConnection.indexOfOutputFunction]
+                                .ConnectTo(childView.additionalInputPorts[extraConnection.indexOfInputAction]);
+                            AddElement(extraEdge);
+                        }
+                    }
                 }
             });
         }
@@ -104,7 +114,16 @@ using Node = elZach.GraphScripting.Node;
                 {
                     NodeView parentView = edge.output.node as NodeView;
                     NodeView childView = edge.input.node as NodeView;
-                    tree.AddChild(parentView.node, childView.node);
+                    if (edge.output.portType == typeof(Node.State))
+                    {
+                        tree.AddChild(parentView.node, childView.node);
+                    }
+                    else
+                    {
+                        childView.node.ConnectAdditionalInput(parentView.node, 
+                            (int)edge.input.userData,
+                            (int)edge.output.userData);
+                    }
                 });
             }
             
@@ -124,8 +143,9 @@ using Node = elZach.GraphScripting.Node;
 
         public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
         {
+            //TODO: types of inputs and outputs have to align, because we now can't expect everything to be of the same type
             return ports.ToList().Where(x => x.direction != startPort.direction
-            && x.node != startPort.node).ToList();
+            && x.node != startPort.node && x.portType == startPort.portType).ToList();
         }
 
         private void CreateNodeFromType(System.Type type)

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using elZach.GraphScripting;
 
@@ -11,6 +12,10 @@ public class SetVectorTest : Decorator
     [AssignPort(isInput = true)] public bool randomTestBool;
     
     //public override Color GetColor() => new Color(0.3f,0.5f,0.4f); //use for custom node color
+
+    //[AssignPort(isInput = false)] public event Func<bool> boolOutput; // => randomTestBool;
+
+    //[AssignPort(isInput = false)] public bool GetRandomBool() => randomTestBool;
     
     //gets evaluated once everytime node gets entered
     protected override void OnStart()
@@ -23,6 +28,7 @@ public class SetVectorTest : Decorator
     {
         //Debug.Log($"Vector value is {vector.Value}.");
         //vector.Value = targetValue;
+        Debug.Log($"randomTestBool: {randomTestBool}");
         return Child.Evaluate();
     }
 }

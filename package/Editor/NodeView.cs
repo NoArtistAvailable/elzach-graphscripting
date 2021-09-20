@@ -38,6 +38,7 @@ namespace elZach.GraphScripting
             if (input != null)
             {
                 input.portName = "";
+                input.portType = typeof(Node.State);
                 inputContainer.Add(input);
             }
             foreach (var additionalInput in node.GetAdditionalInputs())
@@ -48,7 +49,9 @@ namespace elZach.GraphScripting
                     additionalInputPorts = new List<Port>();
                 }
                 var port = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, additionalInput.GetType());
-                port.portName = additionalInput.ToString();
+                port.portName = additionalInput.GetType().Name;// .ToString();
+                port.portType = additionalInput.GetType();
+                port.userData = additionalInputPorts.Count;
                 additionalInputPorts.Add(port);
                 inputContainer.Add(port);
             }
@@ -69,7 +72,24 @@ namespace elZach.GraphScripting
             if (output != null)
             {
                 output.portName = "";
+                output.portType = typeof(Node.State);
                 outputContainer.Add(output);
+            }
+
+            foreach (var additionalOutput in node.GetAdditionalOutputs())
+            {
+                if (additionalOutputPorts == null)
+                {
+                    outputContainer.Add(new Label("----------"));
+                    additionalOutputPorts = new List<Port>();
+                }
+
+                var port = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, additionalOutput);
+                port.portName = additionalOutput.Name; // .ToString();
+                port.portType = additionalOutput;
+                port.userData = additionalOutputPorts.Count;
+                additionalOutputPorts.Add(port);
+                outputContainer.Add(port);
             }
         }
 
