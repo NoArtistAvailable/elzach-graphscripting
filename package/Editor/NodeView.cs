@@ -34,18 +34,22 @@ namespace elZach.GraphScripting
         private void CreateInputPorts()
         {
             if (node is Root) return;
-            input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Multi, typeof(Node));
-            if (input != null)
+            if (!(node is ValueProvider))
             {
-                input.portName = "";
-                input.portType = typeof(Node.State);
-                inputContainer.Add(input);
+                input = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Multi, typeof(Node));
+                if (input != null)
+                {
+                    input.portName = "";
+                    input.portType = typeof(Node.State);
+                    inputContainer.Add(input);
+                }
             }
+
             foreach (var additionalInput in node.GetAdditionalInputs())
             {
                 if (additionalInputPorts == null)
                 {
-                    inputContainer.Add(new Label("------------"));
+                    //inputContainer.Add(new Label("------------"));
                     additionalInputPorts = new List<Port>();
                 }
                 var port = InstantiatePort(Orientation.Horizontal, Direction.Input, Port.Capacity.Single, additionalInput.GetType());
@@ -80,7 +84,7 @@ namespace elZach.GraphScripting
             {
                 if (additionalOutputPorts == null)
                 {
-                    outputContainer.Add(new Label("----------"));
+                    //outputContainer.Add(new Label("----------"));
                     additionalOutputPorts = new List<Port>();
                 }
 

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d2db792544bfae41b0e30d37fd9b49c, type: 3}
   m_Name: Sequence
   m_EditorClassIdentifier: 
+  extraConnections: []
   guid: bcc8e587c9d33c94fbac07c3e59134bd
   position: {x: -234.00003, y: 277.50006}
   container: {fileID: 11400000}
@@ -31,6 +32,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4036bd1e95c10b47810a143fe70b4d7, type: 3}
   m_Name: TransformNode
   m_EditorClassIdentifier: 
+  extraConnections: []
   guid: 3698ef6479dfb4047b545146a67b74fa
   position: {x: 489.055, y: 76.999985}
   container: {fileID: 11400000}
@@ -79,6 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d739e50497c7145a320be98f1427e9, type: 3}
   m_Name: Select
   m_EditorClassIdentifier: 
+  extraConnections: []
   guid: 52f7ef8852d9a7143827b8a7a6198306
   position: {x: -119.999985, y: 49.450005}
   container: {fileID: 11400000}
@@ -98,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4036bd1e95c10b47810a143fe70b4d7, type: 3}
   m_Name: TranslateTransform
   m_EditorClassIdentifier: 
+  extraConnections: []
   guid: bd682861c7354be4a9c89f50e17f50d8
   position: {x: -3.000004, y: 115.49998}
   container: {fileID: 11400000}
@@ -146,8 +150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b39e97279ea4fd2a6915665356564a1, type: 3}
   m_Name: ToggleBoolTest
   m_EditorClassIdentifier: 
+  extraConnections: []
   guid: 3c6a188193954b249a4dbff048594279
-  position: {x: -302, y: 451.00006}
+  position: {x: -269, y: 395.99997}
   container: {fileID: 11400000}
   parameters: []
   returnValue: 0
@@ -163,11 +168,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a37675012deb74d978c054fa137554, type: 3}
   m_Name: Wait
   m_EditorClassIdentifier: 
+  extraConnections: []
   guid: 0e419d6070c2b324ca06b60fb1b993fb
-  position: {x: 0, y: 0}
+  position: {x: 117.99994, y: 335}
   container: {fileID: 11400000}
   parameters: []
-  waitTime: 0
+  waitTime: 0.02
   expose: 0
 --- !u!114 &-2473102899121218712
 MonoBehaviour:
@@ -181,6 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4036bd1e95c10b47810a143fe70b4d7, type: 3}
   m_Name: TransformNode
   m_EditorClassIdentifier: 
+  extraConnections: []
   guid: 7b9d18ef53a958449abbc9c84de846d6
   position: {x: 489.055, y: -0.000019788742}
   container: {fileID: 11400000}
@@ -260,6 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d406b2d9a41c4484eb41a572fd0f37ee, type: 3}
   m_Name: DistanceCheck
   m_EditorClassIdentifier: 
+  extraConnections: []
   guid: 72596b7f89e86eb48b9690fb16086295
   position: {x: -2.6232758, y: -0.000005722046}
   container: {fileID: 11400000}
@@ -290,6 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b363ccf3b1cbb488e0b1c2b828d522, type: 3}
   m_Name: Repeat
   m_EditorClassIdentifier: 
+  extraConnections: []
   guid: a374b1e41ec16274daa8e69e3bfed58f
   position: {x: -268.51962, y: 48.999992}
   container: {fileID: 11400000}
@@ -310,6 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a37675012deb74d978c054fa137554, type: 3}
   m_Name: Wait
   m_EditorClassIdentifier: 
+  extraConnections: []
   guid: 4a17ce92e3da7e140a66bf2ee29fc45c
   position: {x: 489.055, y: 154}
   container: {fileID: 11400000}
@@ -328,8 +338,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36b363ccf3b1cbb488e0b1c2b828d522, type: 3}
   m_Name: Repeat
   m_EditorClassIdentifier: 
+  extraConnections: []
   guid: d5cfe965572327a43a48dab8c23ff796
-  position: {x: -368, y: 277.50006}
+  position: {x: -398.0001, y: 278}
   container: {fileID: 11400000}
   parameters: []
   Child: {fileID: -8986730170461446211}
@@ -348,11 +359,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a5ad9ec7f28ae4c85f94faf7c5a97f, type: 3}
   m_Name: SetVectorTest
   m_EditorClassIdentifier: 
+  extraConnections:
+  - origin: {fileID: -4440413606326218338}
+    indexOfInputAction: 0
+    indexOfOutputFunction: 0
   guid: 16a0d405c39fd9542837355509ba124d
-  position: {x: -82.50006, y: 335.2391}
+  position: {x: -75, y: 335}
   container: {fileID: 11400000}
   parameters: []
-  Child: {fileID: 0}
+  Child: {fileID: -3142533268498684983}
   vector:
     name: 
     typeName: 
@@ -371,6 +386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d18b4b58c5c14d04a96d64a67d5d8171, type: 3}
   m_Name: Root
   m_EditorClassIdentifier: 
+  extraConnections: []
   guid: ad62b2be021ea944c878233837d4aa32
   position: {x: -466.93625, y: 49.000008}
   container: {fileID: 11400000}
@@ -388,6 +404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d2db792544bfae41b0e30d37fd9b49c, type: 3}
   m_Name: Sequence
   m_EditorClassIdentifier: 
+  extraConnections: []
   guid: 06c9b2a7827613e41b55155139261dde
   position: {x: 199.70573, y: -0.000002861023}
   container: {fileID: 11400000}
@@ -408,6 +425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a37675012deb74d978c054fa137554, type: 3}
   m_Name: Wait
   m_EditorClassIdentifier: 
+  extraConnections: []
   guid: dff747b34a5d572439c8afc33c5f7858
   position: {x: -75.00016, y: 466.00006}
   container: {fileID: 11400000}

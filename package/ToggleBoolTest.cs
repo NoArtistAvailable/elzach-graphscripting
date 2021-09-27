@@ -1,6 +1,6 @@
 namespace elZach.GraphScripting
 {
-    public class ToggleBoolTest : Node
+    public class ToggleBoolTest : ValueProvider
     {
         public bool returnValue;
 
