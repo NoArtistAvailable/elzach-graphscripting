@@ -15,7 +15,7 @@ namespace elZach.GraphScripting
         public Vector3 Execute()
         {
             Evaluate();
-            return Vector3.Lerp(startValue, targetValue, time);
+            return Vector3.LerpUnclamped(startValue, targetValue, time);
         }
     }
 }
