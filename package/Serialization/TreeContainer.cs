@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 using UnityEditor;
 using UnityEngine;
 
 namespace elZach.GraphScripting
 {
-    [CreateAssetMenu(menuName = "SimpleAI/BehaviourTree")]
+    [CreateAssetMenu(menuName = "Graph/TreeContainer")]
     public class TreeContainer : ScriptableObject
     {
         [Serializable]
@@ -57,7 +58,12 @@ namespace elZach.GraphScripting
         {
             this.director = director;
             currentEvaluation = -1;
-            rootNode.Init();
+            foreach (var node in nodes)
+            {
+                //Debug.Log($"Initiating {node.name}.");
+                node.Init();
+            }
+            //ForeachExtraConnection();
         }
         
         public Node.State Evaluate()
@@ -125,8 +131,27 @@ namespace elZach.GraphScripting
             tree.nodes = new List<Node>();
             ForeachNode(tree.rootNode, (node) =>
             {
-                tree.nodes.Add(node);
-                node.container = tree;
+                if (!tree.nodes.Contains(node))
+                {
+                    tree.nodes.Add(node);
+                    node.container = tree;
+                    ForeachExtraConnection(node, (connectionNode) =>
+                    {
+                        foreach (var conn in connectionNode.extraConnections)
+                        {
+                            if (!tree.nodes.Any(x => x.guid == conn.origin.guid))
+                            {
+                                var connectedNode = conn.origin.Clone();
+                                conn.origin = connectedNode;
+                                tree.nodes.Add(connectedNode);
+                            }
+                            else
+                            {
+                                conn.origin = tree.nodes.Find(x => x.guid == conn.origin.guid);
+                            }
+                        }
+                    });
+                }
             });
             
             return tree;
@@ -138,6 +163,14 @@ namespace elZach.GraphScripting
             foreach (var child in GetChildren(node))
                 ForeachNode(child, action);
         }
+
+        public void ForeachExtraConnection(Node node, Action<Node> action)
+        {
+            if (node) action.Invoke(node);
+            foreach(var conn in node.extraConnections)
+                ForeachExtraConnection(conn.origin, action);
+        }
+        
         // public List<SerializedNode> nodes = new List<SerializedNode>()
         // {
         //     new SerializedNode() {index = 0, nodeType = typeof(SelectorComposite).Namespace +"."+ nameof(SelectorComposite)} // rootnode

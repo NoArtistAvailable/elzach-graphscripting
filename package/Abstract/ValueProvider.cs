@@ -6,8 +6,9 @@ namespace elZach.GraphScripting
     {
         protected override State OnUpdate()
         {
-            Debug.LogWarning("This Node shouldn't Update");
-            return State.Failure;
+            //Debug.LogWarning("This Node shouldn't Update");
+            //return State.Failure;
+            return State.Running;
         }
     }
 }

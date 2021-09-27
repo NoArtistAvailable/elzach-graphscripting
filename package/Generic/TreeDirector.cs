@@ -42,6 +42,7 @@ namespace elZach.GraphScripting
         }
         
         public TreeContainer data;
+        public float deltaTime { get; private set; }
         public List<Binding> bindings = new List<Binding>();
         public List<Referenced> values = new List<Referenced>();
 
@@ -170,8 +171,12 @@ namespace elZach.GraphScripting
         
         IEnumerator RunTree()
         {
-            while (data.Evaluate() == Node.State.Running) 
+            deltaTime = Time.deltaTime;
+            while (data.Evaluate() == Node.State.Running)
+            {
+                deltaTime = Time.deltaTime;
                 yield return null;
+            }
         }
     }
 }

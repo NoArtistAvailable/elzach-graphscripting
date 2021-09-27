@@ -38,7 +38,7 @@ namespace elZach.GraphScripting
             //if (movementRoutine != null) return State.Running;
             if (progress < 1f)
             {
-                progress += Time.deltaTime / time; //<- should be evaluation delta Time
+                progress += director.deltaTime / time; //<- should be evaluation delta Time
                 target.position = Vector3.Lerp(startPosition, targetPosition, progress);
                 return State.Running;
             }

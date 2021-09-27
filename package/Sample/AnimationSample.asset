@@ -1,0 +1,232 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-2618791020512158209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ba39638161485f409c0ed70d28ebd37, type: 3}
+  m_Name: LerpVector
+  m_EditorClassIdentifier: 
+  extraConnections:
+  - origin: {fileID: -1783733677907448225}
+    indexOfInputAction: 0
+    indexOfOutputFunction: 0
+  guid: 2ece3e8459398ad4581056e778ad8deb
+  position: {x: 494, y: -3.405014}
+  container: {fileID: 11400000}
+  parameters: []
+  time: 0
+  startValue: {x: 1, y: 1, z: 1}
+  targetValue: {x: 2, y: 0.5, z: 1}
+--- !u!114 &-1783733677907448225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c66e9584d3f5db346965fa180505e8c6, type: 3}
+  m_Name: CurveNode
+  m_EditorClassIdentifier: 
+  extraConnections: []
+  guid: 3e8e3450354fa0744bc8bbf9bfc9abb6
+  position: {x: 332.64612, y: -98.00001}
+  container: {fileID: 11400000}
+  parameters: []
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: -0.016823918
+      outSlope: -0.016823918
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.62161595
+    - serializedVersion: 3
+      time: 0.25
+      value: 1
+      inSlope: 1.3524668
+      outSlope: 1.3524668
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.91727084
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.75
+      value: 1
+      inSlope: -1.230432
+      outSlope: -1.230432
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.76432395
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0.014980913
+      outSlope: 0.014980913
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.69808936
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  time: 2
+--- !u!114 &-816125800741826081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36b363ccf3b1cbb488e0b1c2b828d522, type: 3}
+  m_Name: Repeat
+  m_EditorClassIdentifier: 
+  extraConnections: []
+  guid: 22e751ac02e764342a6f40c046071e6e
+  position: {x: 10, y: 9}
+  container: {fileID: 11400000}
+  parameters: []
+  Child: {fileID: 491580825288373218}
+  cycles: 0
+  cycle: 0
+  exitOnFail: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 376d759668af6234d8099cf2f1040dc2, type: 3}
+  m_Name: AnimationSample
+  m_EditorClassIdentifier: 
+  state: 0
+  director: {fileID: 0}
+  rootNode: {fileID: 5252639651340243634}
+  nodes:
+  - {fileID: 5252639651340243634}
+  - {fileID: 3297452182589981337}
+  - {fileID: -816125800741826081}
+  - {fileID: 491580825288373218}
+  - {fileID: -1783733677907448225}
+  - {fileID: 5787429213003482493}
+  - {fileID: -2618791020512158209}
+--- !u!114 &491580825288373218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c1318926a66ab4d8abb9d8dbf19687, type: 3}
+  m_Name: Parallel
+  m_EditorClassIdentifier: 
+  extraConnections: []
+  guid: 5698e8f2d9f45de42bf23d3ba8f5471d
+  position: {x: 159, y: 9}
+  container: {fileID: 11400000}
+  parameters: []
+  Children:
+  - {fileID: -1783733677907448225}
+  - {fileID: 5787429213003482493}
+--- !u!114 &3297452182589981337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ba39638161485f409c0ed70d28ebd37, type: 3}
+  m_Name: LerpVector
+  m_EditorClassIdentifier: 
+  extraConnections:
+  - origin: {fileID: -1783733677907448225}
+    indexOfInputAction: 0
+    indexOfOutputFunction: 0
+  guid: e0720b77bf3a783458b9b7517492a084
+  position: {x: 494, y: -98}
+  container: {fileID: 11400000}
+  parameters: []
+  time: 0
+  startValue: {x: 0, y: 0, z: 0}
+  targetValue: {x: 0, y: 1, z: 0}
+--- !u!114 &5252639651340243634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d18b4b58c5c14d04a96d64a67d5d8171, type: 3}
+  m_Name: Root
+  m_EditorClassIdentifier: 
+  extraConnections: []
+  guid: b401d8738242afd46b1d29d4645b77b7
+  position: {x: -81, y: 9}
+  container: {fileID: 11400000}
+  parameters: []
+  Child: {fileID: -816125800741826081}
+--- !u!114 &5787429213003482493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19be27683091b604d84fe2e623bc743c, type: 3}
+  m_Name: SetWorldTransform
+  m_EditorClassIdentifier: 
+  extraConnections:
+  - origin: {fileID: 3297452182589981337}
+    indexOfInputAction: 0
+    indexOfOutputFunction: 0
+  - origin: {fileID: -2618791020512158209}
+    indexOfInputAction: 2
+    indexOfOutputFunction: 0
+  guid: 91053fd6298823b42b3752b730bb9788
+  position: {x: 711.8995, y: 11.499931}
+  container: {fileID: 11400000}
+  parameters:
+  - Parameter:
+      name: Target
+      typeName: UnityEngine.Transform, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+    path: /SetWorldTransform/target
+  target: {fileID: 0}
+  flags: 10
+  worldPosition: {x: 0, y: 0, z: 0}
+  worldRotation: {x: 0, y: 0, z: 0, w: 0}
+  worldScale: {x: 0, y: 0, z: 0}

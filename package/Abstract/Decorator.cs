@@ -11,13 +11,6 @@ namespace elZach.GraphScripting
             base.GetParametersRecursive(ref parameters);
             if(Child) Child.GetParametersRecursive(ref parameters);
         }
-        
-        public override void Init()
-        {
-            base.Init();
-            if(Child) Child.Init();
-        }
-
         protected override State OnUpdate()
         {
             return Child.Evaluate();

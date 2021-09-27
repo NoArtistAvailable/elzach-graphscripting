@@ -68,16 +68,14 @@ using Node = elZach.GraphScripting.Node;
                     var childView = GetNodeView(child);
                     Edge edge = parentView.output.ConnectTo(childView.input);
                     AddElement(edge);
-                    if (child.extraConnections.Count > 0)
-                    {
-                        foreach (var extraConnection in child.extraConnections)
-                        {
-                            Edge extraEdge = GetNodeView(extraConnection.origin)
-                                .additionalOutputPorts[extraConnection.indexOfOutputFunction]
-                                .ConnectTo(childView.additionalInputPorts[extraConnection.indexOfInputAction]);
-                            AddElement(extraEdge);
-                        }
-                    }
+                }
+
+                foreach (var conn in n.extraConnections)
+                {
+                    var connectedView = GetNodeView(conn.origin);
+                    Edge edge = connectedView.additionalOutputPorts[conn.indexOfOutputFunction]
+                        .ConnectTo(parentView.additionalInputPorts[conn.indexOfInputAction]);
+                    AddElement(edge);
                 }
             });
         }

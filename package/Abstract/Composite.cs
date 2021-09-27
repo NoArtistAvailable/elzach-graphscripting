@@ -15,13 +15,6 @@ namespace elZach.GraphScripting
             foreach(var child in Children)
                 if(child) child.GetParametersRecursive(ref parameters);
         }
-        
-        public override void Init()
-        {
-            base.Init();
-            foreach(var child in Children) child.Init();
-        }
-
         public override Node Clone()
         {
             Composite node = base.Clone() as Composite;

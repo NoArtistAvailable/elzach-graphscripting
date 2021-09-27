@@ -43,7 +43,7 @@ namespace elZach.GraphScripting
             if (previousConn != null) extraConnections.Remove(previousConn);
             extraConnections.Add(conn);
         }
-        [SerializeField, HideInInspector] public List<ExtraConnection> extraConnections = new List<ExtraConnection>();
+        [SerializeField] public List<ExtraConnection> extraConnections = new List<ExtraConnection>();
         
         public enum State{Running, Failure, Success}
 
@@ -192,10 +192,12 @@ namespace elZach.GraphScripting
         {
             foreach (var connection in extraConnections)
             {
-                Debug.Log($"Trying to get {connection.indexOfOutputFunction} [{connection.origin.additionalOutputFunctions.Count}] from {connection.origin.name} " +
-                          $"to {connection.indexOfInputAction} [{additionalInputActions.Count}] ");
+                // Debug.Log($"Trying to get {connection.indexOfOutputFunction} [{connection.origin.additionalOutputFunctions.Count}] from {connection.origin.name} " +
+                //           $"to {connection.indexOfInputAction} [{additionalInputActions.Count}] ");
                 if (connection.origin.additionalOutputFunctions.Count <= connection.indexOfOutputFunction)
                     connection.origin.GetAdditionalOutputs();
+                if (additionalInputActions.Count <= connection.indexOfInputAction)
+                    GetAdditionalInputs();
                 additionalInputActions[connection.indexOfInputAction].Invoke(connection.origin.GetOutput(connection.indexOfOutputFunction));
             }
             lastEvaluation = container.currentEvaluation;

@@ -88,7 +88,7 @@ namespace elZach.GraphScripting
                     additionalOutputPorts = new List<Port>();
                 }
 
-                var port = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, additionalOutput);
+                var port = InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Multi, additionalOutput);
                 port.portName = additionalOutput.Name; // .ToString();
                 port.portType = additionalOutput;
                 port.userData = additionalOutputPorts.Count;
